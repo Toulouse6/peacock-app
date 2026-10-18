@@ -1,0 +1,5367 @@
+.stage {
+  min-height: 100dvh;
+  display: grid;
+  place-items: center;
+  background: #12141c;
+  padding: 16px;
+}
+
+.phone {
+  width: min(100%, 390px);
+  height: min(100dvh - 32px, 844px);
+  background-color: var(--chrome);
+  border-radius: 40px;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  box-shadow:
+    0 0 0 10px #1a1d28,
+    0 28px 70px rgb(6 8 16 / 48%);
+  transition: background-color 0.65s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.phone[data-tab='events'],
+.phone[data-tab='shop'],
+.phone[data-tab='marketplace'],
+.phone[data-tab='feed'],
+.splash {
+  background-color: #08101d;
+  /* The icon's own colour, read top to bottom: emerald teal where the header
+     sits, cooling through the palette's royal blue into the deep blue the
+     lists sit on. */
+  background-image: linear-gradient(
+    150deg,
+    #1f2c39 0%,
+    #1a2735 24%,
+    #131d2b 52%,
+    #08101d 82%
+  );
+}
+
+.phone[data-tab='wallet'] {
+  background-color: #0b1526;
+  background-image: linear-gradient(180deg, #1f2c39 0%, #16222f 42px, #0b1526 180px, #0b1526 100%);
+}
+
+.screen {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  background: transparent;
+  color: #fff;
+  position: relative;
+}
+
+.screen-events,
+.screen-spend,
+.screen-market,
+.screen-feed {
+  background: transparent;
+}
+
+.screen-events .screen-header p,
+.screen-spend .screen-header p,
+.screen-market .screen-header p,
+.screen-feed .screen-header p,
+.wallet-screen .screen-header p {
+  color: rgb(255 255 255 / 82%);
+  -webkit-text-fill-color: rgb(255 255 255 / 82%);
+}
+
+.screen-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: calc(26px + env(safe-area-inset-top, 0px)) 22px 14px;
+  position: relative;
+  z-index: 3;
+}
+
+.screen-header.has-remix {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: start;
+  min-height: 0;
+  padding: calc(26px + env(safe-area-inset-top, 0px)) 22px 12px;
+}
+
+.screen-feed .screen-header,
+.screen-events .screen-header,
+.screen-market .screen-header {
+  min-height: calc(83px + env(safe-area-inset-top, 0px));
+}
+
+.screen-header-copy {
+  min-width: 0;
+}
+
+.screen-header.has-remix .screen-header-copy {
+  max-width: none;
+}
+
+.remix-now {
+  position: relative;
+  left: auto;
+  top: auto;
+  bottom: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  width: auto;
+  max-width: 100%;
+  min-width: 0;
+  color: #fff;
+  -webkit-text-fill-color: #fff;
+  text-align: center;
+  z-index: 4;
+  justify-self: center;
+  align-self: center;
+  margin-top: 0;
+}
+
+.remix-now.is-muted {
+  opacity: 0.7;
+}
+
+.remix-copy {
+  display: block;
+  width: 100%;
+  padding: 0;
+  background: none;
+  border: 0;
+  color: #fff;
+  -webkit-text-fill-color: #fff;
+  text-align: center;
+  cursor: pointer;
+}
+
+.remix-copy strong,
+.remix-copy em,
+.remix-copy span {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #fff;
+  -webkit-text-fill-color: #fff;
+}
+
+.remix-copy strong {
+  font-family: var(--font-ui);
+  font-size: var(--t-md);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  line-height: 1.05;
+}
+
+.remix-copy em {
+  font-family: var(--font-ui);
+  font-size: var(--t-xs);
+  font-weight: 500;
+  font-style: normal;
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+  opacity: 0.92;
+}
+
+.remix-now-line {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  min-width: 0;
+  max-width: 100%;
+  margin-top: 0;
+}
+
+.remix-now-line span {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-family: var(--font-ui);
+  font-size: var(--t-xs);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  line-height: 16px;
+  color: #fff;
+  -webkit-text-fill-color: #fff;
+}
+
+.remix-now-line button {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  background: none;
+  border: 0;
+  color: #fff;
+  -webkit-text-fill-color: #fff;
+}
+
+.remix-now-line svg {
+  width: var(--i-md);
+  height: var(--i-md);
+  display: block;
+}
+
+.remix-frame {
+  position: absolute;
+  width: 100%;
+  height: 20px;
+  left: 0;
+  top: 0;
+  z-index: 0;
+  opacity: 0;
+  border: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.screen-header h1 {
+  margin: 0;
+  /* The mark's "ck" is a high-contrast old-style serif, not a geometric sans:
+     thin hairlines against thick stems, bracketed serifs, a narrow round C.
+     Cormorant Garamond is that same species of letter, set at the wordmark's
+     own weight so the two read as one letterform at two sizes.
+     The tracking is measured off the art rather than chosen: the C ends at
+     195 of the mark's units and the K begins at 200, a 5-unit gap against a
+     122-unit cap height — about 0.03em once the cap is read as 0.7em. The
+     wordmark sets its letters tight, so the title does too. */
+  font-family: var(--font-title);
+  /* Sized off the lockup rather than chosen. The lockup sets PCK at 30 of its
+     36 viewBox units, so at the header's 28px the wordmark renders at 23.3px —
+     a 15.4px cap. 1.45rem of the same face gives a 15.3px cap, so the title and
+     the mark are two settings of one letterform at one height, which is what
+     makes them read as a pair rather than as a title and a logo. */
+  font-size: var(--t-5xl);
+  /* 600, the weight the wallet header was lifted to. The thin setting held on
+     the app's flat grounds but not over a photograph, and one weight across
+     every screen is what keeps the title and the wordmark a pair. */
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  line-height: 1;
+  /* Aligned to the top of the wordmark's "ck", not to its P. Two parts, so a
+     change of face only ever touches the second one:
+       --ck-drop  where the ck begins in the art. In the lockup the baseline is
+                  y=27 and the cap is 0.66 of the 30-unit face, so the cap top
+                  lands at y≈7.2 of 36 — a fifth of the way down. At the
+                  header's 28px that is 5.6px. Fixed by the logo, not the font.
+       --cap-gap  the empty band a line box leaves above the cap, in em. With
+                  line-height 1 that is halfLeading + ascent - capHeight; for
+                  Cormorant Garamond, whose caps sit high in a tall line box,
+                  it comes out near 0.116em.
+     Subtracting the second from the first puts the painted cap exactly at the
+     ck's top. Swap the face, recompute --cap-gap, and the title stays put. */
+  --ck-drop: 5.6px;
+  --cap-gap: 0.116em;
+  margin-top: calc(var(--ck-drop) - var(--cap-gap));
+  color: #fff;
+  -webkit-text-fill-color: #fff;
+}
+
+.screen-header p {
+  margin: 6px 0 0;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-family: Figtree, system-ui, sans-serif;
+  font-size: var(--t-md);
+  font-weight: 600;
+  letter-spacing: normal;
+  font-style: normal;
+  color: var(--kicker);
+}
+
+.kicker-pin {
+  width: 11px;
+  height: 11px;
+  flex-shrink: 0;
+  display: block;
+  color: #fff;
+}
+
+.pboi-logo {
+  display: block;
+  height: 29.44px;
+  width: auto;
+  flex-shrink: 0;
+  justify-self: end;
+  margin-top: -4.35px;
+  object-fit: contain;
+}
+
+.sheet {
+  flex: 1;
+  min-height: 0;
+  background: var(--sheet);
+  color: var(--ink);
+  border-radius: 28px 28px 0 0;
+  padding: 18px 22px 88px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior-x: none;
+}
+
+.count-line {
+  margin: 0 0 12px;
+  font-family: var(--font-ui);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-size: var(--t-lg);
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--wash);
+  border-radius: 999px;
+  padding: 0 14px;
+  height: 40px;
+}
+
+.search-bar input {
+  border: 0;
+  background: transparent;
+  width: 100%;
+  outline: none;
+  font-size: var(--t-lg);
+  color: var(--ink);
+}
+
+.search-bar input::placeholder {
+  color: var(--muted);
+}
+
+.search-icon {
+  color: var(--muted);
+  display: grid;
+}
+
+.filter-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 18px 0 6px;
+}
+
+.filter-label {
+  margin: 0;
+  font-size: var(--t-xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #fff;
+  -webkit-text-fill-color: #fff;
+}
+
+.filter-note {
+  margin: 0;
+  font-size: var(--t-xs);
+  line-height: 1.35;
+  color: var(--muted);
+  font-weight: 400;
+  letter-spacing: normal;
+  text-transform: none;
+}
+
+.filter-tabs {
+  display: flex;
+  gap: 6px;
+  min-width: 0;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+}
+
+.filter-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.filter-tabs.is-sm {
+  gap: 4px;
+}
+
+.filter-tabs.is-sm button {
+  padding: 4px 8px;
+  font-size: var(--t-xs);
+  letter-spacing: 0.04em;
+}
+
+.currency-lock {
+  margin: 0;
+  font-family: var(--font-ui);
+  font-size: var(--t-xl);
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.price-range-readout {
+  margin: 0;
+  font-family: Inter, system-ui, sans-serif;
+  font-size: var(--t-sm);
+  font-weight: 400;
+  letter-spacing: 0;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+}
+
+.price-range {
+  position: relative;
+  height: 28px;
+  /* Flush with the rest of the drawer: the plumes' outer edges sit on the
+     content's left and right, which puts the rail between their centres a
+     half-handle in from each side. */
+  margin: 4px 0 8px;
+}
+
+.price-range-track,
+.price-range-fill {
+  position: absolute;
+  top: 50%;
+  height: 2px;
+  border-radius: 999px;
+  transform: translateY(-50%);
+}
+
+.price-range-track {
+  left: 0;
+  right: 0;
+  background: var(--line);
+}
+
+.price-range-fill {
+  background: var(--filter-accent, #a7aebb);
+}
+
+/* Half the 14px handle at each end — the distance a thumb's centre is held
+   back from the edge of the input. */
+.price-range-rail {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 7px;
+  right: 7px;
+}
+
+.price-range input[type='range'] {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  margin: 0;
+  background: none;
+  appearance: none;
+  pointer-events: none;
+}
+
+.price-range input[type='range']::-webkit-slider-runnable-track {
+  background: transparent;
+  height: 2px;
+}
+
+/*
+ * Plain dots. The plume was tried here and read as clutter at thumb size — a
+ * drag handle wants to be a shape you can aim at, not a picture. Pewter at
+ * rest, white while you have hold of it, which is now a colour swap rather
+ * than a second image.
+ */
+.price-range input[type='range']::-webkit-slider-thumb {
+  appearance: none;
+  /* 14px round, pulled up by (14 - 2) / 2 so it sits centred on the 2px track. */
+  width: 14px;
+  height: 14px;
+  margin-top: -6px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--filter-accent, #a7aebb);
+  pointer-events: auto;
+  cursor: grab;
+}
+
+.price-range input[type='range']:hover::-webkit-slider-thumb,
+.price-range input[type='range']:active::-webkit-slider-thumb,
+.price-range input[type='range']:focus-visible::-webkit-slider-thumb {
+  background: #fff;
+}
+
+.price-range input[type='range']::-moz-range-track {
+  background: transparent;
+  height: 2px;
+  border: 0;
+}
+
+.price-range input[type='range']::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--filter-accent, #a7aebb);
+  pointer-events: auto;
+  cursor: grab;
+}
+
+.price-range input[type='range']:hover::-moz-range-thumb,
+.price-range input[type='range']:active::-moz-range-thumb,
+.price-range input[type='range']:focus-visible::-moz-range-thumb {
+  background: #fff;
+}
+
+.filter-tabs button,
+.ghost-btn,
+.pay-btn,
+.bottom-nav button {
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  font-family: var(--font-ui);
+}
+
+.filter-tabs button {
+  white-space: nowrap;
+  padding: 5px 9px;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--muted);
+  font-size: var(--t-xs);
+  /* Tracking pulled in: the caps needed the air, the sentence case does not. */
+  letter-spacing: 0.02em;
+  text-transform: capitalize;
+  font-weight: 600;
+  box-shadow: none;
+}
+
+.filter-tabs button.is-active {
+  background: var(--btn);
+  color: #fff;
+  box-shadow: none;
+}
+
+/*
+ * The currency mark. One rule for every place it turns up — the card, a
+ * price, an earn plate, a filter band — because all of them want the same
+ * thing: the drawing at the size of the type beside it, painted in that
+ * type's own colour.
+ *
+ * inline-block with a baseline nudge rather than a flex child, since most of
+ * its homes are a run of text. The em sizing is what lets one rule serve a
+ * 20px balance and an 11px chip.
+ */
+.token-mark {
+  display: inline-block;
+  vertical-align: -0.08em;
+  /* Just under the digits' cap. A mark set to the type's full em stands
+     taller than the figures beside it, because an em is the whole body of
+     the type and a lining digit only fills the cap — so matched on paper it
+     reads oversized on screen. */
+  height: 0.95em;
+  width: calc(0.95em * 195 / 240);
+  /* It leads a figure everywhere it stands, so the air belongs on its right.
+     Set solid against a digit the two read as one glyph.
+     In em, and set only here: every place that wanted "a bit more" used to
+     add its own, so the same mark sat at three different distances from its
+     number depending on which line it was in. */
+  margin-right: 0.2em;
+  background-color: currentColor;
+  -webkit-mask-image: var(--icon);
+  mask-image: var(--icon);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+}
+
+.pbs-unit {
+  text-transform: lowercase;
+}
+
+/* The price pairs two currencies, so the mark needs the space the slash
+   gives the shekel symbol on the other side. */
+/* The price pairs two currencies, so the mark needs the room the slash gives
+   the shekel symbol on the other side. Left only — the gap to its own figure
+   is the shared one. */
+.cost .token-mark {
+  margin-left: 0.3em;
+}
+
+.item-list {
+  display: grid;
+  margin-top: 6px;
+}
+
+.item-row {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 52px 1fr auto;
+  gap: 12px;
+  /* Baseline, not top: the price is set much smaller than the title, so making
+     their boxes start together left the price riding a few pixels high. Sitting
+     them on a shared baseline is what "aligned to the title" actually means. */
+  align-items: baseline;
+  /* Side padding on every row, not just the pinned ones: the price column and
+     the ticket count were running into the edge of the list. Held in a
+     variable because the pinned plate has to measure its own overhang from
+     whatever this screen's rows happen to use. */
+  --row-pad: 12px;
+  padding: 11px var(--row-pad);
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+}
+
+.item-thumb {
+  /* The row aligns on the title's baseline; the picture has none, so it opts
+     out and keeps the centred position it has always had. */
+  align-self: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  font-family: var(--font-ui);
+  overflow: hidden;
+  background: #2a2e3a;
+}
+
+.item-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.item-copy {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+
+.item-copy strong {
+  font-family: var(--font-ui);
+  font-size: var(--t-2xl);
+  font-weight: 600;
+  line-height: 1.2;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  color: #fff;
+  -webkit-text-fill-color: #fff;
+  text-overflow: ellipsis;
+}
+
+.item-title-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+}
+
+.ticket-mark {
+  display: inline-flex;
+  align-items: center;
+  gap: -2px;
+  flex-shrink: 0;
+  /* Tickets and bracelets carry the same gold as the feed's pb mark —
+     they're the thing being bought, not row furniture. */
+  color: var(--live);
+}
+
+.ride-mark {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  flex-shrink: 0;
+  color: var(--muted);
+  font-size: var(--t-xs);
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+.ride-mark svg,
+.ticket-mark svg {
+  width: var(--i-sm);
+  height: var(--i-sm);
+  display: block;
+}
+
+.ticket-mark svg {
+  transform: rotate(-90deg);
+}
+
+.ticket-mark.is-bracelet svg {
+  transform: none;
+}
+
+/* A mask rather than an img, so the bracelet takes the row's colour. The
+   tilt matches the one the Afters pass uses in the wallet. */
+.bracelet-mark {
+  width: var(--i-sm);
+  height: var(--i-sm);
+  display: block;
+  transform: rotate(-14deg);
+  background-color: currentColor;
+  -webkit-mask-image: var(--icon);
+  mask-image: var(--icon);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+}
+
+.item-sub,
+.item-meta,
+.item-bought,
+.empty {
+  color: var(--muted);
+  font-size: var(--t-md);
+}
+
+.item-bought {
+  font-size: var(--t-xs);
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+.item-copy span:not(.ride-mark, .ticket-mark) {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.screen-events .item-row {
+  grid-template-columns: 58px 1fr auto;
+  /* A little side room so the price column isn't against the edge of the
+     list. This is the line the pinned plates align their content to. */
+  --row-pad: 5px;
+  padding: 12px var(--row-pad);
+}
+
+.screen-events .item-thumb {
+  width: 58px;
+  height: 58px;
+}
+
+.screen-events .item-copy {
+  gap: 3px;
+}
+
+.screen-events .item-copy strong {
+  line-height: 1.2;
+}
+
+.screen-events .item-sub,
+.screen-events .item-meta {
+  font-size: var(--t-sm);
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1.22;
+}
+
+.screen-events .item-bought {
+  line-height: 1.22;
+}
+
+/* Same geometry as the Events list, down to the side padding. It used to run
+   flush at 0, which left the pinned plates — whose overhang is measured off
+   --row-pad — indenting their content 15px while the plain rows below stayed
+   at the edge. Matching Events fixes the pair and makes the two lists read as
+   one component. */
+.screen-market .item-row {
+  grid-template-columns: 58px 1fr auto;
+  --row-pad: 5px;
+  padding: 12px var(--row-pad);
+}
+
+.screen-market .item-thumb {
+  width: 58px;
+  height: 58px;
+}
+
+.screen-market .item-copy {
+  gap: 3px;
+}
+
+.screen-market .item-copy strong {
+  line-height: 1.2;
+}
+
+.screen-market .item-sub,
+.screen-market .item-meta {
+  font-size: var(--t-sm);
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1.22;
+}
+
+.price-badge {
+  min-width: 42px;
+  padding: 6px 8px;
+  border-radius: 8px;
+  font-family: var(--font-ui);
+  font-size: var(--t-lg);
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-align: center;
+  color: #6a5424;
+  background: var(--accent);
+}
+
+.cost-mark {
+  flex-shrink: 0;
+  margin: 0;
+  padding: 0;
+  background: none;
+  color: #fff;
+  -webkit-text-fill-color: #fff;
+  font-family: var(--font-ui);
+  font-size: var(--t-xs);
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: 1.2;
+  text-align: right;
+  white-space: nowrap;
+}
+
+/* The price column hangs from the top of the row rather than floating in the
+   middle of it: its first line meets the title on its left, and the earn badge
+   stacks down from there. The text column is the tallest, so its top is the
+   row's top and the two first lines land together. */
+/*
+ * The price at the top of the row, the gain at the foot. The column used to
+ * pack both to the top, which left the badge hanging in the middle of the
+ * row with white space under it — it now spans the row's full height and
+ * puts its two parts at the two ends, so the badge sits on the last line of
+ * the copy beside it.
+ */
+.item-price {
+  display: grid;
+  align-self: stretch;
+  align-content: space-between;
+  justify-items: end;
+  gap: 9px;
+  flex-shrink: 0;
+}
+
+/*
+ * Everything on the plate centred on one line, not sitting on a baseline.
+ * The sign and the mark were centred while the figure was on the baseline,
+ * so the plus landed low against digits that have no descender to use the
+ * room below them. A line-height of 1 makes each box hug its own glyph, so
+ * centring them lines up the ink rather than the leading.
+ */
+.earn-badge {
+  display: inline-flex;
+  align-items: center;
+  line-height: 1;
+  justify-content: flex-end;
+  /* No row gap: the sign carries its own, and the mark carries the shared
+     one. A gap here would have been added to both. */
+  gap: 0;
+  min-width: 44px;
+  padding: 3px 5px 4px;
+  border-radius: 6px;
+  /* The brand's green, the same one the mark wears on the splash. The plate
+     used to be a near-black a shade off the list it sits in, which made the
+     gain the quietest thing on a row it is meant to be the reward of. The
+     type goes white on it — the pewter it carried was mixed for the dark
+     plate and sinks into this one. */
+  background: rgb(50 110 97 / 85%);
+  color: #fff;
+  -webkit-text-fill-color: #fff;
+  font-family: var(--font-ui);
+  font-size: var(--t-sm);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.earn-badge small {
+  font-family: Figtree, Georgia, serif;
+  font-size: 0.95em;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: 1;
+  text-transform: none;
+  font-variant: normal;
+  font-style: normal;
+  opacity: 0.9;
+}
+
+/* The unit, drawn, ahead of the figure. Sized in em off the badge's own type
+   and painted with currentColor, so it carries the plate's accent and follows
+   it wherever that colour is changed. */
+/* On the plate the three parts are flex items, so the mark is centred on the
+   row rather than hung off a text baseline. */
+.earn-badge .token-mark {
+  vertical-align: baseline;
+  height: 1.05em;
+  width: calc(1.05em * 195 / 240);
+}
+
+.seller-face {
+  display: grid;
+  justify-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+  min-width: 72px;
+  max-width: 78px;
+}
+
+.seller-face img {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
+  box-shadow: 0 0 0 2px #16181f, 0 0 0 3px #3a4154;
+}
+
+.seller-face em {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  font-style: normal;
+  font-size: var(--t-xs);
+  font-weight: 500;
+  line-height: 1.15;
+  color: var(--muted);
+  max-width: 78px;
+  text-align: center;
+  white-space: normal;
+}
+
+/*
+ * The row aligns its columns on their baselines, which is right for the
+ * picture and the copy — the title sits on the same line as the thumbnail's
+ * first. The seller is a portrait with a name under it, not a line of text,
+ * so a baseline to share is the wrong thing to ask of it: it hung high, with
+ * all the slack below. It centres on the row instead.
+ */
+.item-row > .seller-face {
+  align-self: center;
+}
+
+.seller-face-row {
+  width: max-content;
+  max-width: none;
+}
+
+.seller-face-row em {
+  max-width: none;
+  white-space: nowrap;
+}
+
+.seller-face-detail img {
+  width: 48px;
+  height: 48px;
+}
+
+.sell-field {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+  font-size: var(--t-xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* Label on the left, holdings ratio on the right, both on the caption line
+   above the control so the field keeps its single-column rhythm. */
+.sell-field-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.sell-ratio {
+  font-style: normal;
+  letter-spacing: 0.08em;
+  color: var(--ink);
+}
+
+/* Minus and plus pinned to the ends, the count centred between them, so the
+   number sits still as it changes instead of shifting with its own width. */
+.sell-stepper {
+  display: grid;
+  grid-template-columns: 42px 1fr 42px;
+  align-items: center;
+  height: 42px;
+  border-radius: 12px;
+  background: var(--wash);
+  overflow: hidden;
+}
+
+.sell-stepper button {
+  height: 100%;
+  border: 0;
+  padding: 0;
+  background: none;
+  color: var(--ink);
+  font-size: var(--t-3xl);
+  line-height: 1;
+  cursor: pointer;
+}
+
+.sell-stepper button:disabled {
+  color: var(--muted);
+  opacity: 0.45;
+  cursor: default;
+}
+
+.sell-stepper strong {
+  text-align: center;
+  font-family: var(--font-ui);
+  font-size: var(--t-lg);
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--ink);
+}
+
+.sell-field select {
+  height: 42px;
+  border: 0;
+  border-radius: 12px;
+  padding: 0 12px;
+  background: var(--wash);
+  color: var(--ink);
+  font-family: var(--font-ui);
+  font-size: var(--t-lg);
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.list-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.list-toolbar .count-line {
+  margin: 0;
+  white-space: nowrap;
+  font-size: var(--t-sm);
+}
+
+.count-place {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.count-place .kicker-pin {
+  color: currentColor;
+}
+
+.filter-tools {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.filter-reset {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--btn-ink);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+
+.filter-reset svg {
+  width: var(--i-md);
+  height: var(--i-md);
+  display: block;
+}
+
+.filter-launch {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 0;
+  background: var(--btn);
+  color: var(--btn-ink);
+  font-family: var(--font-ui);
+  font-size: var(--t-sm);
+  /* Tracking pulled in: the caps needed the air, the sentence case does not. */
+  letter-spacing: 0.02em;
+  text-transform: capitalize;
+  font-weight: 700;
+  padding: 8px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.filter-launch i {
+  font-style: normal;
+  min-width: 16px;
+  height: 16px;
+  padding: 0 4px;
+  border-radius: 999px;
+  background: #3a3e4c;
+  color: var(--btn-ink);
+  display: grid;
+  place-items: center;
+  font-size: var(--t-xs);
+}
+
+.active-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 10px 0 0;
+}
+
+.active-filters span {
+  font-size: var(--t-sm);
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: var(--wash);
+}
+
+.drawer-root {
+  position: absolute;
+  inset: 0;
+  z-index: 12;
+}
+
+.drawer-scrim {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  background: rgb(31 28 26 / 38%);
+  cursor: pointer;
+}
+
+.drawer-panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: min(84%, 300px);
+  /* The side panels — the filter and the set's notes — take their own value
+     rather than the shared one. They cover a whole screen edge to edge, so a
+     little more of what is behind them shows than a sheet laid in the middle
+     needs to let through. */
+  background: rgb(31 44 57 / 85%);
+  /* Enough to settle the list behind it without erasing it: a panel reads as
+     translucent only while you can still make out what it is over. */
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  color: var(--ink);
+  padding: 22px 16px 18px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: -16px 0 40px rgb(31 28 26 / 18%);
+}
+
+.drawer-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.drawer-head h2 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--t-4xl);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.drawer-text {
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  font-size: var(--t-lg);
+  cursor: pointer;
+}
+
+/* The set-notes drawer closes with a mark rather than the word. Sized to the
+   same box the label occupied so the header keeps its rhythm. */
+.drawer-x {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  margin-right: -6px;
+}
+
+.drawer-x svg {
+  width: var(--i-md);
+  height: var(--i-md);
+  display: block;
+}
+
+/*
+ * overflow clips at this box's padding edge, and the price handles hang half
+ * a plume past the rail. The body borrows the panel's 16px of side room as
+ * its own padding — the negative margin gives it straight back, so nothing
+ * moves — and the overhang then falls inside the clip instead of across it.
+ */
+.drawer-body {
+  flex: 1;
+  overflow: auto;
+  margin: 0 -16px;
+  padding: 10px 16px 16px;
+}
+
+.drawer-done {
+  width: 100%;
+}
+
+.bottom-nav {
+  z-index: 5;
+}
+
+.detail-sheet {
+  z-index: 14;
+}
+
+.feature-banner {
+  position: relative;
+  margin: 0 0 16px;
+  border-radius: 20px;
+  overflow: hidden;
+  background: #2a2624;
+}
+
+.feature-slide {
+  display: block;
+  width: 100%;
+  height: 140px;
+  padding: 0;
+  border: 0;
+  cursor: pointer;
+  position: relative;
+}
+
+.feature-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: brightness(0.68);
+}
+
+.feature-copy {
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  bottom: 14px;
+  color: #f6f3ef;
+  display: grid;
+  gap: 2px;
+  text-align: left;
+}
+
+.feature-copy span {
+  font-size: var(--t-xs);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  /* Off-white, not the accent: on the header slides the kicker sits over
+     artwork, and a coloured one competed with the slide itself. */
+  color: var(--kicker);
+  font-weight: 600;
+}
+
+.feature-copy strong {
+  font-family: var(--font-display);
+  font-size: var(--t-4xl);
+  font-weight: 600;
+}
+
+.feature-copy em {
+  font-style: normal;
+  font-size: var(--t-md);
+  color: #ddd6cc;
+}
+
+.feature-dots {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: flex;
+  gap: 5px;
+}
+
+.feature-dots button {
+  width: 6px;
+  height: 6px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: rgb(255 255 255 / 38%);
+  cursor: pointer;
+}
+
+/*
+ * Feed variant: the same frame as Events and Market, holding the track
+ * that's playing instead of a rotating set. Square cover art, so it sits
+ * a little taller and the image is cropped from its middle.
+ */
+.feature-banner.is-remix .feature-slide img {
+  object-position: center 50%;
+  filter: brightness(0.56);
+  transition: filter 0.22s ease;
+}
+
+/* The art comes up a little under the pointer — enough to say the whole
+   cover is a target without washing out the title sitting on top of it. */
+.feature-banner.is-remix .feature-slide:hover img,
+.feature-banner.is-remix .feature-slide:focus-visible img {
+  filter: brightness(0.72);
+}
+
+/* Play state reads at a glance from the corner mark. */
+/* A real control now, not decoration: the cover beneath it opens the set
+   notes, so play has to be its own target. */
+.remix-badge {
+  position: absolute;
+  left: 16px;
+  top: 14px;
+  z-index: 2;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  background: rgb(10 12 18 / 46%);
+  backdrop-filter: blur(6px);
+  color: #fff;
+  cursor: pointer;
+}
+
+.remix-badge svg {
+  width: var(--i-sm);
+  height: var(--i-sm);
+  display: block;
+}
+
+.remix-mute {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  background: rgb(10 12 18 / 46%);
+  backdrop-filter: blur(6px);
+  color: #fff;
+  cursor: pointer;
+}
+
+.feature-banner.is-remix.is-muted .remix-mute {
+  color: var(--muted);
+}
+
+/* Four bars standing on a shared baseline. Each runs the same keyframes at a
+   different delay and duration, which is enough to read as sound without any
+   of them lining up. Silence swaps the whole mark for a play triangle, so
+   there's no off state to style here. */
+.eq {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 2px;
+  width: 15px;
+  height: 15px;
+}
+
+.eq i {
+  width: 2px;
+  height: 100%;
+  border-radius: 1px;
+  background: currentColor;
+  transform-origin: 50% 100%;
+  animation: eq-bar 0.9s ease-in-out infinite;
+}
+
+.eq i:nth-child(1) {
+  animation-delay: -0.6s;
+}
+
+.eq i:nth-child(2) {
+  animation-delay: -0.25s;
+  animation-duration: 0.7s;
+}
+
+.eq i:nth-child(3) {
+  animation-delay: -0.45s;
+  animation-duration: 1.1s;
+}
+
+.eq i:nth-child(4) {
+  animation-delay: -0.1s;
+  animation-duration: 0.8s;
+}
+
+@keyframes eq-bar {
+  0%,
+  100% {
+    transform: scaleY(0.22);
+  }
+
+  50% {
+    transform: scaleY(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .eq i {
+    animation: none;
+    transform: scaleY(0.6);
+  }
+}
+
+.remix-mute svg {
+  width: var(--i-md);
+  height: var(--i-md);
+  display: block;
+}
+
+.remix-card + .remix-card {
+  margin-top: 14px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+}
+
+/* Portrait on the left, the three stacked lines on the right. min-width: 0
+   on the text column lets a long handle wrap instead of pushing the row
+   wider than the drawer. */
+.remix-card-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.remix-card-head > div {
+  min-width: 0;
+  display: grid;
+  gap: 2px;
+  justify-items: start;
+}
+
+.remix-card-head img {
+  width: 58px;
+  height: 58px;
+  flex-shrink: 0;
+  border-radius: 14px;
+  object-fit: cover;
+  display: block;
+}
+
+.remix-role {
+  font-family: var(--font-ui);
+  font-size: var(--t-xs);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.remix-card-head strong {
+  font-family: var(--font-display);
+  font-size: var(--t-3xl);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.remix-card p {
+  margin: 10px 0 0;
+  font-size: var(--t-lg);
+  line-height: 1.55;
+  color: var(--btn-ink);
+}
+
+/* Both links on one row beneath the paragraph, flush left. No wrapping —
+   two short handles always fit the drawer width. */
+.remix-links {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 16px;
+}
+
+/* index.css forces every link to inherit its colour so iOS can't autolink
+   phone numbers in blue — so the accent has to be set here explicitly. */
+.remix-ig {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: var(--t-md);
+  font-weight: 500;
+}
+
+/* a:visited and a:hover in index.css both sit at (0,1,1), above a bare class —
+   so every state has to be named here or a link the browser has already seen
+   drops back to inherited white. This is why one of the four looked wrong. */
+.remix-ig,
+.remix-ig:link,
+.remix-ig:visited {
+  color: var(--live);
+  -webkit-text-fill-color: var(--live);
+}
+
+.remix-ig:hover,
+.remix-ig:link:hover,
+.remix-ig:visited:hover,
+.remix-ig:focus-visible,
+.remix-ig:active {
+  color: #fff;
+  -webkit-text-fill-color: #fff;
+}
+
+/* Sets sit a step below the handles — a faint rule separates them so the two
+   groups don't read as one long list of blue-ish text. */
+.remix-sets {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid rgb(255 255 255 / 9%);
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.remix-sets-label {
+  /* The label needs air on both sides or it sticks to the rule above it and
+     crowds the first set below. */
+  margin-bottom: 4px;
+  font-size: var(--t-xs);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgb(255 255 255 / 42%);
+  -webkit-text-fill-color: rgb(255 255 255 / 42%);
+}
+
+.remix-set {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: var(--t-md);
+  font-weight: 400;
+  line-height: 1.3;
+}
+
+/* Pewter at rest like every other link in the drawer; white on hover, so the
+   line you're pointing at is the one that steps forward. */
+.remix-set,
+.remix-set:link,
+.remix-set:visited {
+  color: var(--live);
+  -webkit-text-fill-color: var(--live);
+}
+
+.remix-set:hover,
+.remix-set:link:hover,
+.remix-set:visited:hover,
+.remix-set:focus-visible,
+.remix-set:active {
+  color: #fff;
+  -webkit-text-fill-color: #fff;
+}
+
+.remix-set svg {
+  width: var(--i-md);
+  height: var(--i-md);
+  flex-shrink: 0;
+  display: block;
+}
+
+.remix-ig svg {
+  width: var(--i-sm);
+  height: var(--i-sm);
+  flex-shrink: 0;
+  display: block;
+}
+
+/* The slide you're on goes flat white, the way every other active mark in the
+   app does — the pewter sat too close to the dimmed dots beside it to read as
+   the chosen one. */
+.feature-dots button.is-on {
+  background: #fff;
+  width: 14px;
+  border-radius: 999px;
+}
+
+.bottom-nav {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 72px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  background: var(--nav, #12141a);
+  border-top: 1px solid var(--line);
+  padding: 8px 6px 18px;
+}
+
+.bottom-nav button {
+  color: var(--muted);
+  font-size: var(--t-xs);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-weight: 600;
+  transition: color 0.15s ease, font-size 0.15s ease;
+}
+
+.bottom-nav button.is-active {
+  color: var(--ink);
+  font-size: var(--t-sm);
+}
+
+.wallet-screen .screen-header h1,
+.wallet-screen .screen-header p {
+  color: #fff;
+  -webkit-text-fill-color: #fff;
+  text-shadow: 0 1px 14px rgb(0 0 0 / 55%);
+}
+
+.wallet-screen {
+  overflow-x: hidden;
+  max-width: 100%;
+  background: transparent;
+}
+
+.wallet-top {
+  position: relative;
+  z-index: 1;
+}
+
+.wallet-screen .pay-card {
+  padding-left: 23px;
+  padding-bottom: 10px;
+}
+
+.wallet-wash {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  /* --tilt-rush is movement speed, not position (lib/tilt.js). Brightness
+     and contrast ride it together so the facet breaks flare while the dark
+     panes between them stay dark — a glint, not a wash of grey. One filter
+     on the container covers all six frames at once. */
+  filter: brightness(calc(1 + var(--tilt-rush, 0) * 0.32))
+    contrast(calc(1 + var(--tilt-rush, 0) * 0.14))
+    saturate(calc(1 + var(--tilt-rush, 0) * 0.2));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wallet-wash {
+    filter: none;
+  }
+}
+
+.wallet-opal {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 18%;
+  pointer-events: none;
+  /* Only the right 60% of the render is used, blown up to fill the frame:
+     1 / 0.6 ≈ 1.667, anchored to the right edge so that slice is what lands.
+     Done with a transform rather than by cropping the files, so the sources
+     stay at full resolution — at 1440px wide the 60% slice is still ~860px
+     against a ~390pt frame, well above 2x, and .wallet-wash clips the rest. */
+  --crop: 1.6667;
+  transform: scale(var(--crop));
+  transform-origin: 100% 18%;
+}
+
+/*
+ * Six renders of the same crystal, each lit from a key light 60 degrees
+ * further around the circle. Crossfading them moves the light source itself,
+ * so facets brighten and fall off in sequence rather than the whole image
+ * sliding — nothing about the geometry moves.
+ *
+ * Tilt and hover both feed --tilt-x / --tilt-y (see lib/tilt.js). Each frame
+ * weights itself by how closely the tilt points at its own light, which is
+ * the dot product below: tilt-x * cos(angle) - tilt-y * sin(angle). Because
+ * the lights ring the full circle, the highlight can now travel anywhere
+ * instead of swinging between three fixed positions.
+ *
+ * Frame 1 is the opaque base so the hero never shows through.
+ */
+.wallet-opal-1 {
+  opacity: 1;
+}
+
+/*
+ * Animating opacity directly would beat the tilt value, since animations
+ * outrank normal declarations. So the idle drift animates a registered
+ * custom property instead and gets *added* to the tilt term below. Where
+ * @property is unsupported it stays 0 and tilt simply takes over.
+ */
+@property --wallet-idle {
+  syntax: '<number>';
+  inherits: false;
+  initial-value: 0;
+}
+
+.wallet-opal-2,
+.wallet-opal-3,
+.wallet-opal-4,
+.wallet-opal-5,
+.wallet-opal-6 {
+  --gain: 2.2;
+  will-change: opacity;
+  opacity: clamp(
+    0,
+    calc(
+      (var(--tilt-x, 0) * var(--lx) - var(--tilt-y, 0) * var(--ly))
+        * var(--gain)
+      + var(--wallet-idle)
+    ),
+    1
+  );
+
+  /* Staggered so the idle light walks around the ring in order. */
+  animation: wallet-idle 30s ease-in-out infinite;
+}
+
+/* Light at 80deg — above. */
+.wallet-opal-2 {
+  --lx: 0.173;
+  --ly: -0.985;
+  animation-delay: -24s;
+}
+
+/* 140deg — upper left. */
+.wallet-opal-3 {
+  --lx: -0.766;
+  --ly: -0.643;
+  animation-delay: -18s;
+}
+
+/* 200deg — left and slightly below. */
+.wallet-opal-4 {
+  --lx: -0.94;
+  --ly: 0.343;
+  animation-delay: -12s;
+}
+
+/* 260deg — below. */
+.wallet-opal-5 {
+  --lx: -0.173;
+  --ly: 0.985;
+  animation-delay: -6s;
+}
+
+/* 320deg — lower right. */
+.wallet-opal-6 {
+  --lx: 0.766;
+  --ly: 0.643;
+  animation-delay: 0s;
+}
+
+/* Each frame peaks in its own sixth of the loop, so at rest the highlight
+   makes one slow pass around the crystal. Shallow, so a real tilt still
+   reads louder than the drift. */
+@keyframes wallet-idle {
+  0%,
+  22%,
+  100% {
+    --wallet-idle: 0;
+  }
+
+  8%,
+  14% {
+    --wallet-idle: 0.5;
+  }
+}
+
+@media (hover: hover) {
+  .wallet-opal-2,
+  .wallet-opal-3,
+  .wallet-opal-4,
+  .wallet-opal-5,
+  .wallet-opal-6 {
+    transition: opacity 110ms ease-out;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wallet-opal-2,
+  .wallet-opal-3,
+  .wallet-opal-4,
+  .wallet-opal-5,
+  .wallet-opal-6 {
+    animation: none;
+  }
+}
+
+
+/* The cut-glass shot behind the wallet. Cover-cropped from the top so the
+   bright facets land behind the header and the card, and masked out towards
+   the foot so the sheet still sits on near-black. */
+.wallet-crystal {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-size: cover;
+  background-repeat: no-repeat;
+  /* Dimmed a step: it's a backdrop, and the card has to stay the brightest
+     thing on the screen. */
+  opacity: 0.78;
+  /* Nothing runs on a clock. Held level, the glass sits at its resting
+     brightness and stays there; every change in it comes from the device
+     turning, through --tilt-x / --tilt-y / --tilt-rush. */
+  filter:
+    brightness(calc(1.06 + var(--tilt-rush, 0) * 0.5))
+    saturate(calc(1.08 + var(--tilt-rush, 0) * 0.45))
+    hue-rotate(calc(var(--tilt-x, 0) * 10deg));
+  /* And the crop slides a little against the tilt, so the light looks like
+     it's raking across a surface rather than fading up in place. */
+  background-position: calc(50% + var(--tilt-x, 0) * 4%) calc(0% + var(--tilt-y, 0) * 2%);
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    #000 0%,
+    #000 34%,
+    rgb(0 0 0 / 35%) 56%,
+    transparent 74%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    #000 0%,
+    #000 34%,
+    rgb(0 0 0 / 35%) 56%,
+    transparent 74%
+  );
+  pointer-events: none;
+}
+
+/*
+ * A ground arriving over the one it replaces, a feather at a time. The five
+ * grounds are the same plume in different metals, so changing one into
+ * another is not a picture dissolving into another picture — it is the same
+ * fan, feather by feather, taking a new colour. Each feather is one copy of
+ * the arriving ground masked to a soft disc over that feather's eye and stem,
+ * and each fades up on its own delay over its own stretch, with the ground
+ * between them coming last. The outgoing picture lies underneath the whole
+ * time, so a feather that hasn't turned yet is still showing its old metal
+ * rather than a hole.
+ *
+ * The vertical fade is kept as a second mask layer and the two are
+ * intersected: an arriving feather honours the same horizon as everything
+ * else on the screen.
+ */
+.wallet-crystal.is-feather {
+  -webkit-mask-image:
+    linear-gradient(
+      to bottom,
+      #000 0%,
+      #000 34%,
+      rgb(0 0 0 / 35%) 56%,
+      transparent 74%
+    ),
+    radial-gradient(
+      circle var(--feather-r) at var(--feather-x) var(--feather-y),
+      #000 35%,
+      rgb(0 0 0 / 0) 100%
+    );
+  mask-image:
+    linear-gradient(
+      to bottom,
+      #000 0%,
+      #000 34%,
+      rgb(0 0 0 / 35%) 56%,
+      transparent 74%
+    ),
+    radial-gradient(
+      circle var(--feather-r) at var(--feather-x) var(--feather-y),
+      #000 35%,
+      rgb(0 0 0 / 0) 100%
+    );
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
+  opacity: 0;
+  animation-name: feather-turn;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  /* Both ends, not just the far one. A feather spends up to 1.7s waiting out
+     its delay, and with `forwards` the animation does not touch it until it
+     starts — so it sat at whatever the cascade said, which inside the group
+     is 1. Every feather was fully up before its own fade began and there was
+     no turn left to watch. `both` holds it at the first keyframe through the
+     delay, which is where it belongs. */
+  animation-fill-mode: both;
+}
+
+@keyframes feather-turn {
+  to {
+    /* Opaque. The dimming is the group's job now, not each layer's. */
+    opacity: 1;
+  }
+}
+
+/* No turning for anyone who asked for less: the new ground is simply there. */
+@media (prefers-reduced-motion: reduce) {
+  .wallet-crystal.is-feather {
+    animation: none;
+    opacity: 1;
+  }
+}
+
+/*
+ * A turn, composited once.
+ *
+ * The seventeen layers of a change — the outgoing ground and the sixteen
+ * arriving feathers — are seventeen copies of a backdrop that is meant to be
+ * seen at 78%. Stacked, their alphas compound: where feathers overlap, and
+ * especially once the last one covers the whole frame on top of the other
+ * fifteen, the stack reaches nearly full strength and the plume sits paler
+ * and flatter than it does at rest. That is the overlay, and it lasts from
+ * the end of the turn until the layers are torn down three seconds in, which
+ * is why it reads as something arriving late.
+ *
+ * So the dimming comes off the layers and goes on the group. Inside it every
+ * copy is opaque and simply covers what it lands on — no compounding is
+ * possible — and the whole stack is let down to 78% exactly once, which is
+ * where the single resting layer sits. The turn itself is untouched: same
+ * sixteen feathers, same masks, same delays and durations.
+ */
+.wallet-turn {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 0.78;
+}
+
+.wallet-turn .wallet-crystal {
+  opacity: 1;
+}
+
+/* Except the arriving feathers, which start from nothing however they are
+   composited — the fade in is the whole point of them. */
+.wallet-turn .wallet-crystal.is-feather {
+  opacity: 0;
+}
+
+/*
+ * And the raking band the same way. It is painted by every `.wallet-crystal`
+ * and it is screen-blended, so seventeen of them over one strip of backdrop
+ * is seventeen times the light. None of the copies in a turn carries it.
+ */
+.wallet-turn .wallet-crystal::after {
+  content: none;
+}
+
+/* The group carries it instead, so there is exactly one band whether the
+   screen is mid-turn or at rest. Without this the band vanished for the
+   three seconds of a change and came back when the layers were torn down,
+   which is a haze arriving out of nowhere several seconds after the
+   backdrop settled — the overlay, from the other side. */
+.wallet-turn {
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    #000 0%,
+    #000 34%,
+    rgb(0 0 0 / 35%) 56%,
+    transparent 74%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    #000 0%,
+    #000 34%,
+    rgb(0 0 0 / 35%) 56%,
+    transparent 74%
+  );
+}
+
+/* The band of light that rakes across the facets. It doesn't run on a clock
+   any more: where it sits is the tilt, and how strong it is is the rush, so
+   the highlight tracks the hand holding the phone. Screen-blended, because a
+   highlight on glass only ever adds — it never darkens what it crosses. */
+.wallet-crystal::after,
+.wallet-turn::after {
+  content: '';
+  position: absolute;
+  inset: -20% -60%;
+  /* Upright. The band used to lean 14° off vertical, which read as a diagonal
+     wipe across the glass; at 90° it is a straight column of light and the
+     travel left-to-right is all the movement there is. */
+  background: linear-gradient(
+    90deg,
+    transparent 36%,
+    rgb(255 255 255 / 22%) 48%,
+    rgb(190 230 255 / 30%) 52%,
+    transparent 64%
+  );
+  mix-blend-mode: screen;
+  /* No loop. Where the band sits is the tilt and nothing else: held level it
+     rests dead centre of the screen, and it travels only as far as the device
+     is turned. 60% of the half-width either way carries it clear off both
+     edges at full tilt, which is the whole range the band ever needed. */
+  transform: translate3d(
+    calc(var(--tilt-x, 0) * 60%),
+    calc(var(--tilt-y, 0) * 18%),
+    0
+  );
+  opacity: calc(0.55 + var(--tilt-rush, 0) * 0.45);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wallet-crystal::after,
+  .wallet-turn::after {
+    transform: none;
+    opacity: 0.6;
+  }
+}
+
+.wallet-sky {
+  position: absolute;
+  inset: 0;
+  perspective: 980px;
+  perspective-origin: 50% 38%;
+  z-index: 1;
+}
+
+.wallet-field {
+  position: absolute;
+  inset: -10%;
+  transform-style: preserve-3d;
+  transform: rotateX(calc(var(--tilt-y, 0) * -16deg)) rotateY(calc(var(--tilt-x, 0) * 18deg));
+}
+
+.wallet-plane {
+  position: absolute;
+  inset: -14%;
+  transform-style: preserve-3d;
+  background-repeat: no-repeat;
+}
+
+.wallet-plane-far {
+  transform: translate3d(
+      calc(var(--wallet-shift-x, 0px) * 0.2),
+      calc(var(--wallet-shift-y, 0px) * 0.2),
+      -190px
+    )
+    scale(1.38);
+  filter: blur(36px);
+  background:
+    linear-gradient(
+      90deg,
+      rgb(72 28 150 / 72%) 0%,
+      rgb(88 32 160 / 58%) 14%,
+      rgb(120 28 48 / 52%) 28%,
+      rgb(130 32 40 / 48%) 42%,
+      rgb(96 62 16 / 48%) 56%,
+      rgb(20 60 50 / 45%) 68%,
+      rgb(16 40 90 / 60%) 84%,
+      rgb(40 20 100 / 70%) 100%
+    );
+}
+
+.wallet-plane-mid {
+  inset: 0;
+  transform: translate3d(
+      calc(var(--wallet-shift-x, 0px) * 0.55),
+      calc(var(--wallet-shift-y, 0px) * 0.45),
+      -16px
+    );
+  filter: blur(42px) saturate(1.2);
+  background: linear-gradient(
+    90deg,
+    rgb(112 42 214) 0%,
+    rgb(112 42 214) 16%,
+    rgb(206 36 58) 32%,
+    rgb(214 38 50) 48%,
+    rgb(236 108 34) 58%,
+    rgb(224 164 32) 66%,
+    rgb(206 146 28) 72%,
+    rgb(52 204 98) 80%,
+    rgb(24 196 214) 86%,
+    rgb(46 92 242) 94%,
+    rgb(124 48 230) 100%
+  );
+}
+
+.wallet-plane-near {
+  transform: translate3d(
+      calc(var(--wallet-shift-x, 0px) * 1.15),
+      calc(var(--wallet-shift-y, 0px) * 0.9),
+      110px
+    )
+    scale(0.9);
+  filter: blur(18px);
+  opacity: 0.72;
+  mix-blend-mode: screen;
+  background:
+    radial-gradient(ellipse 34% 48% at 8% 36%, rgb(168 80 255 / 55%), transparent 70%),
+    radial-gradient(ellipse 34% 46% at 50% 40%, rgb(255 186 58 / 62%), transparent 68%),
+    radial-gradient(ellipse 36% 48% at 78% 34%, rgb(80 220 255 / 50%), transparent 70%);
+}
+
+.wallet-dust {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+}
+
+.wallet-dust-dust {
+  transform: translateZ(-170px) scale(1.32);
+}
+
+.wallet-dust-glow {
+  transform: translateZ(-10px);
+}
+
+.wallet-dust-star {
+  transform: translateZ(48px);
+}
+
+.wallet-dust-near {
+  transform: translateZ(170px) scale(0.84);
+}
+
+.wallet-speck {
+  position: absolute;
+  animation: speck-float var(--dur, 12s) ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+.wallet-speck i {
+  display: block;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 4px rgb(255 255 255 / 85%);
+  animation: speck-shine var(--shine, 2.4s) ease-in-out infinite;
+  animation-delay: var(--shine-delay, 0s);
+}
+
+.wallet-dust-dust .wallet-speck i {
+  background: rgb(255 248 230 / 80%);
+  box-shadow: none;
+}
+
+.wallet-dust-glow .wallet-speck i {
+  background: radial-gradient(circle, rgb(255 250 230 / 80%) 0%, rgb(255 210 120 / 0%) 72%);
+  box-shadow: none;
+}
+
+.wallet-dust-near .wallet-speck i {
+  background: radial-gradient(circle at 35% 35%, #fff 0%, rgb(255 220 140) 42%, rgb(255 160 40 / 0%) 74%);
+  box-shadow: 0 0 10px rgb(255 200 80 / 55%);
+}
+
+@keyframes speck-float {
+  0% {
+    translate: 0 0;
+  }
+  20% {
+    translate: var(--dx, 18px) calc(var(--dy, 14px) * -0.45);
+  }
+  45% {
+    translate: calc(var(--dx, 18px) * 0.2) calc(var(--dy, 14px) * -1);
+  }
+  70% {
+    translate: calc(var(--dx, 18px) * -0.9) calc(var(--dy, 14px) * 0.15);
+  }
+  88% {
+    translate: calc(var(--dx, 18px) * -0.2) var(--dy, 14px);
+  }
+  100% {
+    translate: 0 0;
+  }
+}
+
+@keyframes speck-shine {
+  0%,
+  100% {
+    opacity: var(--dim, 0.35);
+    scale: 0.78;
+  }
+  38% {
+    opacity: var(--bright, 1);
+    scale: 1.4;
+  }
+  54% {
+    opacity: var(--dim, 0.35);
+    scale: 0.86;
+  }
+  72% {
+    opacity: var(--bright, 1);
+    scale: 1.2;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wallet-speck,
+  .wallet-speck i {
+    animation: none;
+  }
+}
+
+.wallet-screen .screen-header,
+.wallet-screen .pay-card,
+.wallet-hero {
+  position: relative;
+  z-index: 1;
+}
+
+.wallet-hero {
+  position: relative;
+}
+
+/*
+ * Everything standing on the plume carries the balance's shade: a tight dark
+ * edge to hold the shape against the photograph, and the wide violet glow for
+ * colour. The balance set it; the name, the wordmark and the portrait were the
+ * only things up there without it, and on the pale grounds they floated.
+ * Written once as a pair of variables so the four places stay in step.
+ */
+.wallet-top {
+  --plume-shade: 0 1px 2px rgb(8 16 29 / 65%);
+  --plume-glow: 0 1px 12px rgb(70 40 130 / 40%);
+}
+
+.wallet-top .screen-header h1 {
+  text-shadow: var(--plume-shade), var(--plume-glow);
+}
+
+/* The wordmark and the portrait are drawn things, not type, so the same two
+   shades go on as filters. drop-shadow follows the alpha, which is what keeps
+   the shade on the letterforms and on the circle rather than on their boxes. */
+.wallet-top .header-lockup,
+.wallet-profile {
+  filter:
+    drop-shadow(0 1px 2px rgb(8 16 29 / 65%))
+    drop-shadow(0 1px 12px rgb(70 40 130 / 40%));
+}
+
+.wallet-profile {
+  position: absolute;
+  right: 16px;
+  bottom: 14px;
+  width: 72px;
+  height: 72px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  overflow: visible;
+  background: transparent;
+  box-shadow: none;
+}
+
+.wallet-profile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px rgb(255 255 255 / 88%);
+  outline: 1px solid rgb(255 255 255 / 72%);
+  outline-offset: 3px;
+}
+
+.pay-card {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  margin: 0;
+  min-height: 188px;
+  border-radius: 0;
+  padding: 18px 18px 16px;
+  overflow: hidden;
+  display: grid;
+  align-content: end;
+  color: #fff;
+  background: transparent;
+  box-shadow: none;
+}
+
+.pay-card-foot {
+  position: relative;
+  align-self: end;
+  padding-right: 84px;
+}
+
+.pay-card .token-balance {
+  position: relative;
+  margin: 0;
+  display: flex;
+  align-items: baseline;
+  gap: 1px;
+  font-family: var(--font-ui);
+  font-size: var(--t-6xl);
+  /* A hair of tracking on the figures. Set solid, the thousands comma gets
+     swallowed between the digits either side of it and 4,506 reads as one
+     five-digit run. */
+  letter-spacing: 0.015em;
+  font-weight: 600;
+  /* lining + tabular: every digit the same width and the same height, so the
+     number doesn't reflow as the balance changes. */
+  font-variant-numeric: lining-nums tabular-nums;
+  color: #fff;
+  -webkit-text-fill-color: #fff;
+  /* The balance sits straight on the feather photograph, which is dark but
+     busy. A tight shade under the glyphs holds their edges against it; the
+     wide violet glow stays for the colour. */
+  text-shadow: var(--plume-shade), var(--plume-glow);
+}
+
+.pay-card .token-amount {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.pay-card .token-balance small {
+  font-size: var(--t-md);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: none;
+  color: rgb(255 255 255 / 78%);
+}
+
+/*
+ * The unit, drawn. Sized in em off the label it replaces, so it tracks the
+ * figure through every place the balance is set at a different size rather
+ * than needing a pixel of its own at each. Painted with currentColor, which
+ * is what carries it through the bone ground's flip to ink — a white PNG
+ * would have been stranded there.
+ *
+ * A block box in a baseline-aligned flex row sits on its bottom edge, which
+ * is the balance's own baseline: the mark stands on the line the digits do.
+ */
+/* On the card the mark is a flex item on a baseline-aligned row, so it is a
+   block box standing on its own bottom edge — the line the digits sit on. */
+.pay-card .token-balance .token-mark.is-balance {
+  display: block;
+  vertical-align: baseline;
+  font-size: var(--t-md);
+  /* The card's mark is the one that is not standing in a line of text — it
+     is beside the balance, which is set three steps larger than anything
+     around it, so it keeps the fuller size the inline ones have come down
+     from. Shrunk to match them it read as a footnote next to the figure. */
+  height: 1.55em;
+  width: calc(1.55em * 195 / 240);
+  /* The card sets its own: the balance is three steps larger than the type
+     the shared gap was measured against, and at that size a hair reads as
+     nothing. */
+  margin-right: 2px;
+  /* Down onto the comma's foot rather than the digits'. The figure is set
+     with a comma in it, and the comma drops below the baseline — against a
+     mark standing exactly on the line, the group reads as two things at two
+     heights. It sits on the lowest ink in the number instead. */
+  position: relative;
+  top: 2px;
+  background-color: currentColor;
+  -webkit-mask-image: var(--icon);
+  mask-image: var(--icon);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+}
+
+/*
+ * The wallet paints its balance line, its chips and its tabs with
+ * `background: transparent` to strip the plates off them, and that shorthand
+ * lands on the mark too — with more classes behind it than the rule that
+ * paints it. The mask had nothing left to show. Said again, inside that
+ * scope, for every place the mark can stand there.
+ */
+.wallet-screen .token-mark,
+.wallet-screen .pay-card .token-balance .token-mark.is-balance {
+  background-color: currentColor;
+}
+
+.pay-card .fiat-balance {
+  position: relative;
+  /* It is a button now — a tap empties the wallet — so it carries the same
+     chrome-stripping the pck figure does and stays a line of type. */
+  display: block;
+  appearance: none;
+  border: 0;
+  padding: 0;
+  background: none;
+  text-align: inherit;
+  cursor: pointer;
+  margin: 0;
+  /* Solid. Held at 78% the shekel figure read as a disclaimer under the pck
+     balance rather than as the other half of what you have; it is a smaller
+     line than the token count and that is difference enough. */
+  color: #fff;
+  -webkit-text-fill-color: #fff;
+  font-size: var(--t-md);
+  font-weight: 600;
+  letter-spacing: 0.015em;
+  font-variant-numeric: lining-nums tabular-nums;
+  white-space: nowrap;
+  text-shadow: var(--plume-shade), var(--plume-glow);
+}
+
+.wallet-sheet {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  justify-items: stretch;
+  padding: 18px 22px 88px;
+  min-width: 0;
+  max-width: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior-x: none;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  /* The same deep blue the splash settles into (#08101d), so the sheet reads
+     as the app's own ground over the plume rather than as a violet cast. The
+     alphas are unchanged — only the hue moves. */
+  background: linear-gradient(
+    180deg,
+    rgb(8 16 29 / 34%) 0%,
+    rgb(8 16 29 / 46%) 42%,
+    rgb(8 16 29 / 62%) 100%
+  );
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.wallet-sheet::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+.spend-now {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  margin-top: 22px;
+}
+
+.wallet-screen .pay-card,
+.wallet-screen .pay-card .token-balance,
+.wallet-screen .pay-card .token-balance small,
+.wallet-screen .pay-card .fiat-balance,
+.wallet-screen .coin-caption,
+.wallet-screen .gift-kicker,
+.wallet-screen .gift-room li,
+.wallet-screen .gift-room em,
+.wallet-screen .gift-room b,
+.wallet-screen .gift-tip,
+.wallet-screen .filter-tabs button.is-active {
+  background: transparent;
+  font-weight: 800;
+  font-size: var(--t-sm);
+}
+
+.wallet-screen .pay-card .token-balance {
+  font-size: var(--t-4xl);
+  font-weight: 700;
+}
+
+/* The "pck" was pulled tight against the figure, so the two read as one word.
+   It gets real space on its right and drops to 500 — a unit label beside the
+   number rather than part of it. */
+.wallet-screen .pay-card .token-balance small {
+  font-size: var(--t-md);
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  margin-left: 0;
+  margin-right: 5px;
+}
+
+.wallet-screen .pay-card .fiat-balance {
+  font-size: var(--t-md);
+  font-weight: 600;
+  color: rgb(255 255 255 / 95%);
+  -webkit-text-fill-color: rgb(255 255 255 / 95%);
+}
+
+.wallet-screen .item-row {
+  border-bottom-color: rgb(255 255 255 / 50%);
+}
+
+.wallet-screen .filter-tabs button,
+.wallet-screen .filter-tabs button.is-active,
+.wallet-screen .item-row,
+.wallet-screen .item-copy,
+.wallet-screen .item-copy strong,
+.wallet-screen .item-sub,
+.wallet-screen .item-meta,
+.wallet-screen .item-bought,
+.wallet-screen .item-price,
+.wallet-screen .cost-mark,
+.wallet-screen .ticket-mark,
+.wallet-screen .ride-mark,
+.wallet-screen .seller-face em,
+.wallet-screen .empty {
+  color: #fff;
+  -webkit-text-fill-color: #fff;
+}
+
+.spend-now .gift-kicker {
+  color: #fff;
+}
+
+.coin-caption {
+  margin: 8px 0 0;
+  font-family: var(--font-ui);
+  font-size: var(--t-md);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.gift-room {
+  width: 100%;
+  margin-top: 22px;
+}
+
+.gift-kicker {
+  margin: 0 0 10px;
+  font-family: var(--font-ui);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-size: var(--t-md);
+  color: var(--muted);
+}
+
+.gift-room ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 2px;
+  overflow: visible;
+}
+
+.gift-room li {
+  display: grid;
+  /* Mark, label, charge. The charge takes a column of its own rather than
+     sizing to its content, so a tenth of it is a tenth of the row and the
+     bars can be read against each other and against the full width. */
+  grid-template-columns: 34px minmax(0, 1fr) minmax(0, 1fr);
+  gap: 10px;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid rgb(255 255 255 / 50%);
+  font-size: var(--t-lg);
+  cursor: pointer;
+}
+
+.gift-room li:last-child {
+  border-bottom: 0;
+}
+
+/* Every mark sits in the same square box so the column reads evenly; masks
+   use `contain`, so a wide source (the bracelet) just fills less of it. */
+/*
+ * The mark, as a button. It takes the cell the icon used to sit in and
+ * nothing else — no chrome, no padding of its own — so the row looks exactly
+ * as it did and the only tell is the hand. A short squeeze on the press is
+ * the whole of the feedback; the bar beside it running a step further is the
+ * real answer.
+ */
+.gift-add {
+  justify-self: center;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+  transition: transform 140ms ease;
+}
+
+.gift-add:active {
+  transform: scale(0.82);
+}
+
+.gift-add .gift-icon {
+  justify-self: auto;
+}
+
+/* The perk marks stand alone in their own column with no label beside them,
+   so they take the standalone step rather than the inline one — at 14px they
+   were sized for sitting in a line of text, which is not what they do. */
+.gift-icon {
+  width: var(--i-lg);
+  height: var(--i-lg);
+  justify-self: center;
+  display: block;
+  color: #fff;
+}
+
+/* The key runs on a diagonal, so it eats less of its box than the upright
+   marks do. A little extra evens it out optically. */
+.gift-icon.is-key {
+  width: calc(var(--i-lg) + 2px);
+  height: calc(var(--i-lg) + 2px);
+}
+
+/* Tilt the bracelet onto roughly the same diagonal as the key. */
+.gift-icon.is-afters {
+  transform: rotate(-14deg);
+}
+
+.gift-icon.is-mask {
+  background-color: currentColor;
+  -webkit-mask-image: var(--icon);
+  mask-image: var(--icon);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+}
+
+/* A 34×16 box: it takes the small step as its height and the width that
+   ratio asks for, rather than a width picked on its own. */
+.gift-icon.is-word {
+  width: calc(var(--i-lg) * 34 / 16);
+}
+
+/* The scooter is a long, low drawing — set to the step's height it spans half
+   again as wide as the upright marks and reads bigger than all of them. Two
+   pixels off the height, its ratio kept. */
+.gift-icon.is-wide {
+  --wide: calc(var(--i-lg) - 2px);
+  width: calc(var(--wide) * 21 / 13);
+  height: var(--wide);
+}
+
+.gift-room em {
+  font-style: normal;
+}
+
+/* The count as tallies. Right-aligned so the last pip lands on the same
+   edge in every row and the group lengths can be compared down the column. */
+/* One cell per category, run out to however many of it you hold. No tube
+   around it — the bar is the whole mark, and a border at this height only
+   doubled its edge. The track behind stays as the faintest ground so a row
+   with nothing left still has a right edge instead of trailing off. */
+.gift-charge {
+  position: relative;
+  width: 100%;
+  /* The label's own line box, in its own em, so the bar is exactly as tall as
+     the text beside it and follows it if the row's type ever changes size.
+     The grid centres it; align-self says so rather than leaving it to the
+     default, which stretches a block to the full row. */
+  height: 1.25em;
+  align-self: center;
+  border-radius: 99px;
+  background: rgb(255 255 255 / 7%);
+}
+
+/* The charge. --charge is the count against the ten that fills the cell, so
+   the bar's end is the number. */
+.gift-charge i {
+  position: absolute;
+  /* Pinned to the right end, so the bar grows back towards the label rather
+     than away from it — the row's edge is the one thing that holds still. */
+  inset: 0 0 0 auto;
+  display: block;
+  width: calc(100% * var(--charge, 0));
+  /* A single unit should still be a lozenge rather than a sliver, so the fill
+     never gets narrower than it is tall. */
+  min-width: 1.25em;
+  border-radius: 99px;
+  background: #a7aebb;
+  transition: width 0.28s ease, background 0.18s ease;
+}
+
+/* Spent: the ground alone. */
+.gift-charge.is-spent i {
+  display: none;
+}
+
+/* The open or hovered row lifts the bar to white, the way the pips used to
+   light. */
+.gift-room li.is-open .gift-charge i,
+.gift-room li.is-lit .gift-charge i {
+  background: #fff;
+}
+
+.gift-tip {
+  grid-column: 1 / -1;
+  margin: 0 0 6px 44px;
+  padding: 2px 0 4px;
+  border-radius: 0;
+  background: transparent;
+  color: var(--ink);
+  font-size: var(--t-md);
+  line-height: 1.4;
+}
+
+.gift-pass {
+  grid-column: 1 / -1;
+  display: grid;
+  justify-items: start;
+  gap: 6px;
+  margin: 2px 0 10px 44px;
+}
+
+.gift-pass small {
+  text-align: left;
+}
+
+.gift-pass-side {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* The line under the code and the hand-off mark, on one baseline. The mark is
+   nudged down by its own optical slack so its feet sit on the text's, not its
+   box's. */
+.gift-pass-foot {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  /* The code's own quiet zone reads as part of the gap, so flush under it the
+     line sat closer than it looked in the markup. */
+  margin-top: 8px;
+}
+
+.gift-grant {
+  width: 28px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #fff;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+
+/* The word between the two things you can do with the pass. It belongs to the
+   line, so it takes the line's weight rather than the text colour's full
+   strength. */
+.gift-pass-or {
+  color: rgb(255 255 255 / 56%);
+  font-size: var(--t-sm);
+  line-height: 1;
+}
+
+.gift-pass-foot .gift-grant {
+  width: auto;
+  align-self: flex-end;
+  /* The glyph's box is taller than its ink, so sat flush it floats above the
+     line it is next to. */
+  margin-bottom: -2px;
+}
+
+/* The glyph is a 20×16 box drawn at 26×20 — 4% wide. Not visible as
+   distortion; visible as the one mark whose strokes sat heavier than the
+   ones beside it. */
+.gift-grant svg {
+  width: calc(var(--i-lg) * 20 / 16);
+  height: var(--i-lg);
+  display: block;
+}
+
+.gift-pop {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: rgb(8 6 18 / 46%);
+}
+
+/* Confirmed. The scrim and the card go together, unhurried — the card settles
+   back a touch as it fades so it reads as leaving rather than as being
+   switched off. */
+.gift-pop.is-leaving {
+  pointer-events: none;
+  animation: gift-pop-go 420ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.gift-pop.is-leaving .gift-pop-card {
+  animation: gift-pop-card-go 420ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes gift-pop-go {
+  to { opacity: 0; }
+}
+
+@keyframes gift-pop-card-go {
+  to { opacity: 0; transform: scale(0.96); }
+}
+
+.gift-pop-card {
+  width: min(260px, 100%);
+  padding: 10px 12px 0;
+  border-radius: 16px;
+  /* The app's own raised surface rather than a grey of its own: this card
+     stands over the wallet and should read as the same material as it, on
+     the same value every other overlay takes. */
+  background: var(--sheet-over);
+  /* The same light blur the side panels take. At 14 the row behind it was
+     smoothed into a wash and the card read as a solid plate, which is what
+     made it look heavier than the other popups despite being on their
+     value. */
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.gift-pop-search {
+  width: 100%;
+  margin: 0 0 6px;
+  padding: 7px 10px;
+  border: 0;
+  border-radius: 8px;
+  outline: none;
+  appearance: none;
+  background: rgb(255 255 255 / 10%);
+  color: #fff;
+  font: inherit;
+  font-size: var(--t-lg);
+}
+
+.gift-pop-search::placeholder {
+  color: rgb(255 255 255 / 48%);
+}
+
+.gift-pop-list {
+  max-height: 170px;
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+
+.gift-pop-list::-webkit-scrollbar {
+  display: none;
+}
+
+.gift-pop-list button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 8px 2px;
+  border: 0;
+  border-bottom: 1px solid rgb(255 255 255 / 28%);
+  background: transparent;
+  color: #fff;
+  font: inherit;
+  font-size: var(--t-lg);
+  text-align: left;
+  cursor: pointer;
+}
+
+.gift-pop-list button:last-child {
+  border-bottom: 0;
+}
+
+.gift-pop-list img {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.gift-pop-confirm {
+  display: grid;
+  justify-items: center;
+  gap: 12px;
+  padding: 14px 4px 16px;
+  text-align: center;
+  color: #fff;
+}
+
+.gift-pop-confirm img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.gift-pop-confirm p {
+  margin: 0;
+  font-size: var(--t-xl);
+  line-height: 1.35;
+}
+
+.gift-pop-actions {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+}
+
+.gift-pop-actions button {
+  flex: 1;
+  border: 0;
+  border-radius: 999px;
+  padding: 8px 10px;
+  background: rgb(255 255 255 / 12%);
+  color: #fff;
+  -webkit-text-fill-color: #fff;
+  font: inherit;
+  font-size: var(--t-lg);
+  cursor: pointer;
+}
+
+.gift-pop-actions button.is-confirm {
+  background: #fff;
+  color: #12141c;
+  -webkit-text-fill-color: #12141c;
+}
+
+/* The deck grows leftwards out of the live card, so it claims the slivers as
+   width rather than overhanging whatever sits beside it. */
+.gift-pass-deck {
+  /* --step is how far apart the cards sit, --sliver how much of each one
+     shows. The difference between the two is the dark gap that separates one
+     sliver from the next; at a pixel each and no gap the whole pile read as a
+     single soft edge on the code rather than as cards. */
+  --step: 4px;
+  --sliver: 2px;
+  position: relative;
+  /* Pulled left by the dead band the code carries — 6px of card padding and a
+     quiet module — so the first painted pixel of the stack, not the edge of
+     its box, lands on the line the label and the hint start from. */
+  margin-left: calc(0px - var(--qr-inset, 0px));
+  width: calc(120px + var(--deck, 0) * var(--step));
+  height: 120px;
+  padding-left: calc(var(--deck, 0) * var(--step));
+  /* The box closes up gently as the pile loses a card. The padding does not:
+     it is what the live code stands on, and easing it meant the incoming
+     code appeared a step to the right — where the old one had been — and
+     then slid left into place, while the open square underneath it was
+     already standing at the final spot. The code lands where it belongs and
+     only the outline eases. */
+  transition: width 420ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.gift-pass-code {
+  width: 120px;
+  height: 120px;
+  padding: 6px;
+  border-radius: 12px;
+  background: transparent;
+}
+
+/* A pass further down the pile. Sized and placed to the live card's printed
+   square rather than to its box — the box carries 6px of padding and the code
+   inside it a quiet module more, and a hairline cut off the left of that is
+   nothing at all. --qr-inset is where the ink starts, --qr-ink how wide it
+   runs; both come off the rendered code, which is why they are set in JS. */
+.gift-pass-ghost {
+  position: absolute;
+  top: var(--qr-inset, 0px);
+  left: calc(var(--qr-inset, 0px) + (var(--deck, 0) - var(--depth)) * var(--step));
+  width: var(--qr-ink, 108px);
+  height: var(--qr-ink, 108px);
+  opacity: 0.35;
+  clip-path: inset(0 calc(100% - var(--sliver)) 0 0);
+}
+
+.gift-pass-ghost svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.gift-pass-code svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  opacity: 0.7;
+}
+
+.gift-pass small,
+.gift-pass-scan,
+.gift-pass-note {
+  margin: 0;
+  color: rgb(255 255 255 / 78%);
+  font-size: var(--t-sm);
+}
+
+/*
+ * The line under the code is the thing you press to be read. It is still
+ * written as a caption rather than as a button — a door reader is not a
+ * form — so it carries no chrome at all, only the hand.
+ */
+.gift-pass-scan {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  -webkit-text-fill-color: rgb(255 255 255 / 78%);
+  /* The line is written once and never re-wrapped. It sits under a code that
+     is itself changing width as the deck thins, and a count going from 3 to 2
+     is a narrower string — left to lay itself out again it clipped on the
+     frame it changed. Nowrap keeps it on one line whatever the room, and
+     lining figures keep every digit the same width, so the only thing that
+     changes when a pass is spent is the digit itself. */
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums lining-nums;
+}
+
+.gift-pass-scan:disabled {
+  cursor: default;
+}
+
+/* Read and gone. The code the beam has just crossed is spent, so it leaves
+   the card — and the one underneath it, which is the next pass, is simply
+   what is there once it has. */
+.gift-pass-deck.is-done .gift-pass-code {
+  animation: pass-spent 520ms ease forwards;
+}
+
+@keyframes pass-spent {
+  to {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gift-pass-deck.is-done .gift-pass-code {
+    animation: none;
+    opacity: 0;
+  }
+}
+
+/*
+ * The pass underneath, in full, the instant the beam leaves the code above
+ * it. The next pass is already on the card — it is the first sliver of the
+ * deck — so there is nothing to draw and nothing to wait for: the hairline it
+ * is clipped to simply opens out to the whole square at the printed strength,
+ * and it sits exactly where the live code will stand once the deck closes up.
+ * The spent code then fades off it. What was showing through the fade before
+ * was that one unopened pixel, which is why the next code looked cut: it was
+ * cut, and it stayed cut until the handover had finished.
+ */
+/* Ink that belongs to a pass already spent is not shown at all. */
+.gift-pass-code.is-blank {
+  opacity: 0;
+}
+
+.gift-pass-deck.is-done .gift-pass-ghost.is-next,
+.gift-pass-deck.is-blank .gift-pass-ghost.is-next {
+  clip-path: none;
+  opacity: 0.7;
+}
+
+/* The reader's line. Down the card rather than across it: a square code is
+   read in both directions, and a vertical sweep is the one that reads as
+   something being looked at rather than as a barcode being swiped. */
+.pass-laser {
+  position: absolute;
+  left: 0;
+  right: calc(0px - var(--qr-inset, 0px));
+  top: -2%;
+  height: 3px;
+  border-radius: 2px;
+  background: #ff2d2d;
+  box-shadow:
+    0 0 6px 2px rgb(255 45 45 / 85%),
+    0 0 18px 6px rgb(255 45 45 / 45%);
+  animation:
+    pass-sweep 1.5s cubic-bezier(0.45, 0, 0.55, 1) forwards,
+    laser-flash 160ms steps(1, end) infinite;
+}
+
+@keyframes pass-sweep {
+  from {
+    top: -2%;
+  }
+
+  to {
+    top: calc(100% + 3px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pass-laser {
+    animation: none;
+    top: 50%;
+  }
+}
+
+.gift-pass-note {
+  grid-column: 1 / -1;
+  margin: 0 0 8px 44px;
+}
+
+.splash {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  color: #f6f3ef;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  position: relative;
+  line-height: 1;
+}
+
+.splash-mark {
+  grid-area: 1 / 1;
+  display: grid;
+  place-items: center;
+  /* Off dead centre by a twentieth of the screen. A mark sitting exactly in
+     the middle of a tall frame reads as low, because the eye puts the optical
+     centre above the geometric one. Percentages here resolve against the
+     splash's own height, which is the phone's. */
+  position: relative;
+  top: -5%;
+  /* It arrives rather than appears — a tenth of a second of nothing first, so
+     the fade reads as the app opening and not as a slow image. */
+  animation: splash-mark-in 420ms ease 100ms both;
+  /* The green heart is laid over the mark, so the mark is what it is laid
+     against. */
+  position: relative;
+  /* Sized off the frame rather than in pixels, so the mark holds the same
+     share of the screen on every phone — the span is a grid item in the
+     splash, so the percentage resolves against the splash's own width. */
+  width: 24%;
+  max-width: 100px;
+}
+
+.splash-mark img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Over the white mark, filling the same box. The green is painted through
+   the heart's own shape, so it covers the white exactly rather than sitting
+   beside it. */
+.splash-core {
+  position: absolute;
+  inset: 0;
+  background-color: #326e61;
+  /*
+   * Breathing while the app opens. Only the green moves — the outline and
+   * the wordmark hold still, so the mark stays a mark and the one part of it
+   * that looks alive is the part that should.
+   *
+   * Opacity alone, and nothing else. It beat before — squeezing on a scale
+   * and lifting in colour — which drew the eye to the movement rather than
+   * to the mark; a thing that only comes and goes is still there the whole
+   * time, which is what a wait wants to say. Easing in and out equally, so
+   * neither end of the fade is the event.
+   */
+  animation: splash-glow 1.9s ease-in-out 220ms infinite;
+  -webkit-mask-image: var(--icon);
+  mask-image: var(--icon);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+}
+
+/* All the way up and most of the way back. It does not go to nothing: the
+   heart leaving the mark entirely reads as a gap in the drawing rather than
+   as a light going down. */
+@keyframes splash-glow {
+  0%,
+  100% {
+    opacity: 0.22;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+/* The mark's own arrival is enough on its own if motion is unwelcome. */
+@media (prefers-reduced-motion: reduce) {
+  .splash-core {
+    animation: none;
+  }
+}
+
+@keyframes splash-mark-in {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Recolorable variant: the white logo art is used as a mask, so the box
+   paints in currentColor. A span has no intrinsic size, hence the ratio. */
+.pboi-logo.is-tinted {
+  aspect-ratio: 652 / 378;
+  background-color: currentColor;
+  -webkit-mask-image: var(--logo);
+  mask-image: var(--logo);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+}
+
+.splash .pboi-logo {
+  height: 64px;
+  margin-top: 0;
+}
+
+/* The peacock wordmark is close to square, so it needs more height than the
+   old one did to carry the same weight on an empty screen. */
+.splash .peacock-logo {
+  height: 104px;
+}
+
+/* The vertical lockup on the loading screen. `.splash-mark` already centres it
+   in the grid cell; the wordmark is centred inside the art by text-anchor, so
+   the crest, the letters and the whole block all sit on one axis. */
+.splash-lockup {
+  display: block;
+  height: 132px;
+  width: auto;
+  color: #fff;
+  font-family: var(--font-title);
+}
+
+.feed-composer {
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  gap: 10px;
+  padding: 0 0 16px;
+  margin: 0 0 8px;
+  border-bottom: 1px solid var(--line);
+}
+
+.feed-composer-face,
+.feed-user img {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
+}
+
+.feed-composer-body {
+  display: grid;
+  gap: 8px;
+}
+
+.feed-composer-body input {
+  width: 100%;
+  border: 0;
+  background: var(--wash);
+  border-radius: 12px;
+  height: 40px;
+  padding: 0 12px;
+  outline: none;
+  font-size: var(--t-lg);
+  color: var(--ink);
+}
+
+.feed-composer-body input::placeholder {
+  color: var(--muted);
+}
+
+.feed-preview {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 14px;
+  display: block;
+}
+
+.feed-composer-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.feed-composer-tools {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.feed-photo-btn,
+.feed-composer-actions button {
+  height: 32px;
+  border-radius: 999px;
+  padding: 0 12px;
+  font-size: var(--t-md);
+  font-weight: 600;
+}
+
+.feed-photo-btn {
+  width: 32px;
+  padding: 0;
+  display: inline-grid;
+  place-items: center;
+  background: var(--wash);
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.feed-photo-btn svg {
+  width: var(--i-md);
+  height: var(--i-md);
+  display: block;
+}
+
+.feed-photo-btn input {
+  display: none;
+}
+
+.feed-composer-actions button {
+  background: var(--btn);
+  color: var(--btn-ink);
+  border: 0;
+}
+
+.feed-composer-actions button:disabled {
+  opacity: 0.45;
+}
+
+.screen-feed .filter-tabs {
+  justify-content: space-between;
+  width: 100%;
+  gap: 0;
+}
+
+.screen-feed .filter-tabs button {
+  flex: 0 0 auto;
+  font-size: var(--t-xs);
+  padding: 5px 6px;
+}
+
+.feed-mode {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  width: 100%;
+  gap: 0;
+  overflow-x: auto;
+}
+
+.feed-mode button {
+  flex: 0 0 auto;
+  height: 26px;
+  padding: 0 6px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--muted);
+  font-size: var(--t-xs);
+  font-weight: 600;
+  /* Tracking pulled in: the caps needed the air, the sentence case does not. */
+  letter-spacing: 0.02em;
+  text-transform: capitalize;
+  cursor: pointer;
+}
+
+.feed-mode button.is-active {
+  background: var(--btn);
+  color: #fff;
+}
+
+.rate-picks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.rate-picks button {
+  height: 28px;
+  padding: 0 10px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--wash);
+  color: var(--muted);
+  font-size: var(--t-sm);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.rate-picks button.is-on,
+.rate-picks span.is-on {
+  background: var(--btn);
+  color: #fff;
+}
+
+.rate-picks span {
+  height: 28px;
+  padding: 0 10px;
+  border-radius: 999px;
+  background: var(--wash);
+  color: var(--muted);
+  font-size: var(--t-sm);
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+}
+
+
+/*
+ * The kicker's own pewter — the app's secondary, the same as every other
+ * quiet line. The green was tried while the kicker rode the name's line and
+ * read as a status on it; back under the name it is a label, and the label
+ * colour is the one the rest of the chrome uses. Set as a variable so the
+ * mark that leads the line takes the same colour as the words.
+ */
+.rate-kicker {
+  --kicker-ink: #a7aebb;
+  margin: 0;
+  font-family: var(--font-ui);
+  font-size: var(--t-xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--kicker-ink);
+}
+
+.rate-kicker.is-live {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--kicker-ink);
+}
+
+/* The marks inherit rather than reaching for --live, so the line is one
+   colour whichever of the three it is. */
+.rate-kicker .live-heart {
+  color: inherit;
+}
+
+/* Same red as every other accent mark; the pulse below is what makes it
+   stand out, not a separate shade. */
+.live-heart {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  display: block;
+  color: var(--live);
+  /* A recording light: full for most of the beat, then a quick dip. It never
+     reaches zero, so the mark pulses rather than blinking out of the line. */
+  animation: live-pulse 1.6s ease-in-out infinite;
+}
+
+/*
+ * The request marks hold still. The spinning wheel and the swaying ticket
+ * were each the only motion on their line; now the whole kicker breathes and
+ * the mark breathes with it, so a second loop inside the first was two
+ * animations arguing over one small shape.
+ */
+.live-heart.is-wheel,
+.live-heart.is-ticket,
+/* The battle's mark is the live heart itself, so it carried the recording
+   light's beat under the kicker's pulse. On a battle line the pulse is the
+   beat. */
+.feed-kicker.is-battle .live-heart {
+  animation: none;
+}
+
+@keyframes live-pulse {
+  0%,
+  55%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  78% {
+    opacity: 0.3;
+    transform: scale(0.88);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .live-heart {
+    animation: none;
+  }
+}
+
+/* The set or track a post is about. Not bold: the caption below it carries
+   the post's voice at the larger size, and a heavier line above it made the
+   card read as a headline and a standfirst rather than as one person
+   talking. */
+.feed-track {
+  margin: 0;
+  font-family: var(--font-ui);
+  font-size: var(--t-lg);
+  font-weight: 400;
+}
+
+.feed-card > p.feed-tags,
+.feed-auto-tags {
+  margin: 0;
+  color: #fff;
+  font-size: var(--t-md);
+}
+
+.feed-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* A request card has no caption under its kicker, so the PM button lands
+   immediately beneath the line and the two read as one stacked block. It
+   gets the air the caption would have given it. */
+/* A request's top line: the ask on the left, what's left of it on the right,
+   centred on each other. Both are one short line of small caps and figures,
+   so hanging them from the top only left the countdown reading a pixel or two
+   above the words it belongs with. */
+.feed-meta.is-request {
+  align-items: center;
+}
+
+/* The kicker set its own step down from the name it used to sit under. In the
+   top line there is nothing above it to step away from. */
+.feed-meta.is-request .feed-kicker {
+  margin-top: 0;
+}
+
+/* Both sides on the same leading, so centring them lands the caps and the
+   figures on one optical line. */
+.feed-meta.is-request .feed-left,
+.feed-meta.is-request .feed-kicker {
+  line-height: 1.2;
+}
+
+/* The person in the actions row is not one of its controls. `.feed-actions
+   button` is (0,2,1) and outranked `.feed-user-copy`, so the name came out
+   wearing the PM button's plate and the face came out its size — both are put
+   back to the way they read at the top of every other card. */
+.feed-actions.is-request .feed-user button {
+  height: auto;
+  padding: 0;
+  border-radius: 0;
+  background: transparent;
+  color: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+.feed-actions.is-request .feed-user button:hover {
+  background: transparent;
+}
+
+.feed-actions.is-request .feed-user {
+  /* A name sits off the button by the gap a name wants, not the 10px the
+     controls keep between each other. */
+  margin-right: 2px;
+  /* The foot row's face is 19px against 0.68rem type, so it takes less air
+     between the two than the full-size pairing at the top of a card does —
+     eight pixels there is a tenth of the face, here it is nearly half of it.
+     Two is as close as the crest over the avatar allows without painting on
+     the first letter. */
+  gap: 2px;
+}
+
+/* At the foot of a request the name is a label beside a control rather than
+   the card's byline, so it is set at the PM button's own size — and the face
+   comes down with it, since a 28px head beside 0.68rem type reads as a photo
+   with a caption. */
+/* The size is set on the row and on the name both: the name's own rule is
+   (0,1,1) and this is (0,3,1), but the figure beside it inherits, so the row
+   has to carry the size too for the two to measure the same. */
+.feed-actions.is-request .feed-user,
+.feed-actions.is-request .feed-user strong {
+  font-size: var(--t-sm);
+  font-weight: 600;
+  /* The name's own leading was taller than the type and sat it low against
+     the button's label; stripped to the glyphs, the two words line up. */
+  line-height: 1;
+}
+
+/* The copy is a grid, so it centres on the face rather than starting at the
+   top of a box taller than itself. */
+.feed-actions.is-request .feed-user-copy {
+  align-content: center;
+  /* Level with the face, not pulled under it — the crest that sits over the
+     avatar paints into the space to its right, and the name tucked into that
+     corner was being covered by it. */
+  margin-left: 0;
+  overflow: visible;
+}
+
+/* The countdown joins that row as one more small label on it: the button's
+   type size, the glass scaled to match, and its own leading stripped so the
+   figures sit on the line the name and PM do. */
+/* The countdown joins that row as one more small label on it. Inside it the
+   glass is centred on the figures rather than stood on their baseline: a mark
+   taller than the cap height, set on the baseline, rides above the line of
+   type beside it. */
+.feed-actions.is-request .feed-left {
+  display: inline-flex;
+  align-items: center;
+  align-self: center;
+  margin-left: 2px;
+  /* A pixel down. Centring puts the figures' box on the row's middle, which
+     sits them a touch above the name's optical line. */
+  position: relative;
+  top: 1px;
+  color: var(--muted);
+  font-size: var(--t-sm);
+  font-weight: 600;
+  line-height: 1;
+}
+
+.feed-actions.is-request .feed-left .glass-mark {
+  /* Cap height at 0.68rem, near enough — the glass measures the same as the
+     letters it sits with rather than overtopping them. */
+  height: 8px;
+  width: 6px;
+  margin-right: 3px;
+  vertical-align: middle;
+  /* A pixel up, on its own: the figures took their pixel down with the row,
+     and the glass reads level with them from a hair higher. */
+  position: relative;
+  top: -1px;
+}
+
+.feed-actions.is-request .feed-user img {
+  width: 19px;
+  height: 19px;
+}
+
+/* A battle's foot holds only the person who opened it — there is no button
+   beside them, so the row is just the name standing under the options. */
+.feed-actions.is-request.is-battle {
+  margin-top: 10px;
+}
+
+.feed-actions.is-request {
+  /* The person now rides in this row, so it needs the air a name wants
+     rather than the air a button wants. */
+  margin-top: 8px;
+  gap: 10px;
+}
+
+/* The chair that stands for "seats" on an offer line. Set to the line's own
+   size and nudged onto the baseline, so the figure and the mark read as one
+   token rather than as type with a picture after it. */
+/* The glass that marks a figure as time remaining rather than time passed.
+   Set in the line beside the count, a touch under the type size so it reads
+   as punctuation on the number. */
+.feed-left {
+  /* Plain inline text, not a flex row. A flex item's baseline is worked out
+     from its own content and an svg has none, so the glass was being set by
+     whichever edge the browser fell back on; as an inline box it simply sits
+     on the line the way a letter does. */
+  white-space: nowrap;
+}
+
+.glass-mark {
+  /* As tall as the figure beside it, less two pixels: the box is cropped to
+     the glass itself, so the height is drawn glass rather than mostly air. */
+  /* Whole pixels, not a calc on the em. The meta line is 0.78rem, so "1em
+     less two pixels" came out fractional and each card rounded it wherever it
+     happened to land — which is why the glass sat a hair high on some posts
+     and not others. Fixed at eleven by eight, every one of them is laid down
+     identically. */
+  display: inline-block;
+  height: 11px;
+  width: 8px;
+  margin-right: 4px;
+  /* Its foot on the baseline, where the figures' feet are. */
+  vertical-align: baseline;
+  opacity: 0.8;
+}
+
+.seat-mark {
+  width: 0.92em;
+  height: 0.92em;
+  margin-left: 3px;
+  /* A head and shoulders fills its box top to bottom, where the chair sat in
+     the middle of one — so it rides a touch smaller and higher. */
+  vertical-align: -0.1em;
+}
+
+.feed-actions button {
+  display: inline-flex;
+  align-items: center;
+  /* The marks that carry a number already centre themselves in a box wider
+     than they are, so they bring their own air — a gap on top of it read as
+     a space between two separate things rather than one control. */
+  gap: 2px;
+  /* The plate hugs the mark now — a hair above and below the 15px mark, just
+     enough for the radius to still round rather than meet. */
+  height: 19px;
+  padding: 0 10px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--wash);
+  color: var(--muted);
+  font-size: var(--t-sm);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.feed-actions button svg {
+  width: var(--i-sm);
+  height: var(--i-sm);
+  display: block;
+}
+
+/*
+ * One feather, upright. Taller than it is wide, so it is sized by height and
+ * takes whatever width the art's own 163:240 gives it — forced into a square
+ * it would either shrink to nothing beside the other marks or stretch.
+ *
+ * Painted as a mask: the box is filled with currentColor and the drawing cuts
+ * the shape out of it. That is what lets the row's own colour reach it —
+ * pewter at rest, white under `.is-on` — from one file, with no second
+ * artwork for the pecked state.
+ */
+.feed-actions button .peck-mark {
+  /* The feather carries more height than the row's other marks and reads
+     taller still for being narrow, so it comes down a step from them. */
+  height: calc(var(--i-md) - 5px);
+  width: calc((var(--i-md) - 5px) * 195 / 240);
+  align-self: center;
+  margin-right: 1px;
+  display: block;
+  flex-shrink: 0;
+  background-color: currentColor;
+  -webkit-mask-image: var(--icon);
+  mask-image: var(--icon);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  /*
+   * Half a pixel of lift. The digits are the only other thing in the button,
+   * so moving the mark up by half is the same as taking the number down by
+   * half — and it can be done on the one element that already has a
+   * position, without wrapping a text node to shift it. Subpixel, so it
+   * lands as a touch of antialiasing rather than a jump; on a 2x or 3x
+   * screen it is a real pixel.
+   */
+  position: relative;
+  top: -0.5px;
+}
+
+/* An icon you've already acted on is the one state on the row that should
+   read as finished, so it goes to flat white rather than the pewter. */
+.feed-actions button.is-on,
+.party-rate button.is-on {
+  color: #fff;
+}
+
+/* The tab rows — post modes, sort, filters — are left alone. They carry an
+   active state of their own, and a white plate on hover competed with it:
+   you couldn't tell the tab you were pointing at from the one you'd chosen.
+   Only the rating pills, which have no such state, take the white.
+*/
+.rate-picks button:hover {
+  background: #fff;
+  color: var(--accent-ink);
+  -webkit-text-fill-color: var(--accent-ink);
+}
+
+/*
+ * The post actions take no hover at all. White on hover is the same white
+ * `.is-on` uses for a cast peck, so pointing at a post made every one of
+ * them look already pecked — and on a phone, where there is no pointer, the
+ * state would stick after a tap and leave a post looking voted when it was
+ * not. The only thing that changes the colour here is having pecked it.
+ *
+ * The rating pills keep theirs: they are plates you choose between, not a
+ * mark that records what you did, and they have no cast state of their own
+ * to be confused with.
+ */
+.party-rate button:hover {
+  background: var(--wash);
+  color: #fff;
+  -webkit-text-fill-color: #fff;
+}
+
+.feed-clip,
+.user-feed-slide video {
+  width: 100%;
+  height: 340px;
+  object-fit: cover;
+  object-position: center 32%;
+  display: block;
+  border-radius: 18px;
+  background: #2a2e3a;
+  pointer-events: none;
+}
+
+.feed-clip::-webkit-media-controls,
+.feed-clip::-webkit-media-controls-enclosure,
+.feed-clip::-webkit-media-controls-panel,
+.feed-clip::-webkit-media-controls-overlay-play-button,
+.feed-clip::-webkit-media-controls-start-playback-button,
+.user-feed-slide video::-webkit-media-controls,
+.user-feed-slide video::-webkit-media-controls-enclosure,
+.user-feed-slide video::-webkit-media-controls-panel,
+.user-feed-slide video::-webkit-media-controls-overlay-play-button,
+.user-feed-slide video::-webkit-media-controls-start-playback-button {
+  display: none !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  -webkit-appearance: none;
+}
+
+.feed-photo.is-clip {
+  position: relative;
+}
+
+.feed-photo.is-clip i {
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  font-style: normal;
+  font-size: var(--t-xs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #fff;
+  background: rgb(0 0 0 / 45%);
+  padding: 4px 8px;
+  border-radius: 999px;
+}
+
+/* Tucked up under its kicker. The card's gap, this list's own top padding and
+   the first row's padding stacked into about twenty pixels, which read as a
+   break between two things rather than as a heading over its list. */
+.party-rate {
+  list-style: none;
+  padding: 0;
+  margin: -3px 0 0;
+}
+
+.party-rate li {
+  display: grid;
+  grid-template-columns: 40px 1fr auto;
+  gap: 10px;
+  align-items: center;
+  padding: 8px 0;
+}
+
+.party-rate img {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 10px;
+  display: block;
+}
+
+.party-rate div {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+
+.party-rate strong {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px;
+  font-family: var(--font-ui);
+  font-size: var(--t-lg);
+  font-weight: 600;
+  min-width: 0;
+}
+
+.party-rate strong b {
+  flex: none;
+  font-size: var(--t-sm);
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--muted);
+}
+
+.party-rate span {
+  color: var(--muted);
+  font-size: var(--t-sm);
+}
+
+.party-rate button {
+  display: grid;
+  justify-items: center;
+  gap: 1px;
+  min-width: 36px;
+  padding: 2px 0 0;
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  font-family: var(--font-ui);
+  font-size: var(--t-sm);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.party-rate button svg {
+  width: var(--i-sm);
+  height: var(--i-sm);
+  display: block;
+}
+
+.feed-tools {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 14px 0 0;
+  min-width: 0;
+}
+
+.feed-tools .remix-now {
+  flex: 1 1 auto;
+  justify-content: flex-end;
+  margin-top: 0;
+}
+
+.feed-tools .remix-now-line {
+  justify-content: flex-end;
+}
+
+.feed-sort {
+  display: flex;
+  width: fit-content;
+  flex: 0 0 auto;
+  gap: 2px;
+  margin: 0;
+  padding: 3px;
+  border-radius: 999px;
+  background: var(--wash);
+}
+
+.feed-sort button {
+  height: 24px;
+  padding: 0 11px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--muted);
+  font-family: var(--font-ui);
+  font-size: var(--t-xs);
+  font-weight: 600;
+  /* Tracking pulled in: the caps needed the air, the sentence case does not. */
+  letter-spacing: 0.02em;
+  text-transform: capitalize;
+  cursor: pointer;
+}
+
+.feed-sort button.is-active {
+  background: var(--btn);
+  color: #fff;
+}
+
+.feed-tools + .filter-row {
+  margin-top: 8px;
+}
+
+.feed-list {
+  display: grid;
+  gap: 22px;
+  padding-top: 10px;
+}
+
+.feed-card {
+  position: relative;
+  display: grid;
+  gap: 8px;
+  margin-right: -22px;
+  padding-right: 22px;
+  /* The card clips — the slides depend on it — so the crest above the first
+     avatar needs room inside the clip box rather than outside it. The
+     negative margin takes the padding back, so nothing moves. */
+  margin-top: -12px;
+  padding-top: 12px;
+  overflow: hidden;
+}
+
+.feed-card:not(:last-child) {
+  padding-bottom: 18px;
+  border-bottom: 1px solid rgb(255 255 255 / 8%);
+}
+
+/* Not a control — the picture is the post. Only the names beside it open a
+   profile, so there is nothing here to press. */
+.feed-photo {
+  padding: 0;
+  border: 0;
+  background: #2a2624;
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+.feed-photo img,
+.user-feed-slide img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  object-position: center center;
+  display: block;
+}
+
+/* Framed on the foot of the shot. A clip of a floor or a stage has its
+   subject along the bottom edge and sky or ceiling above it, so the default
+   crop at 32% down holds the empty half and loses the thing being filmed. */
+.feed-photo.is-bottom .feed-clip,
+.user-feed-slide.is-bottom video,
+.feed-photo.is-bottom img,
+.user-feed-slide.is-bottom img {
+  object-position: center bottom;
+}
+
+.feed-photo.is-faces img,
+.user-feed-slide.is-faces img {
+  height: 240px;
+  object-position: center 50%;
+}
+
+.feed-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+/*
+ * One colour per kind, so the line says what it is before it is read: the
+ * ticket ask in the app's ice blue, the ride ask in green, and the battle in
+ * gold because it is the one of the three that is a contest rather than a
+ * request. The mark inherits, so icon and words always agree.
+ */
+.feed-kicker.is-ticket {
+  --kicker-ink: #74c7e0;
+}
+
+/* The mark's own green, not a green of its own. It was a mint mixed for this
+   one line; the brand has a green now and a ride is the only kicker wearing
+   one, so it may as well be the same one. Lifted a couple of steps from the
+   solid the plates take, because this is type on a near-black ground rather
+   than a plate on one. */
+.feed-kicker.is-ride {
+  --kicker-ink: #4f9e8b;
+}
+
+/* The battle's purple, not gold. A vote between nights is the one kicker that
+   isn't a favour being asked for, and the app's violet is what the wallet's
+   own glow is lit with. */
+.feed-kicker.is-battle {
+  --kicker-ink: #a435c9;
+}
+
+/*
+ * And all three breathe, on the heart's beat. The ask is the whole point of
+ * these three cards and it sits in a line of quiet chrome, so it takes the
+ * live mark's dip — the words and the mark together, since the line is one
+ * thing. The marks keep their own turn and sway on top of it: an animation on
+ * the child owns only the child's transform, so the wheel still spins inside
+ * a line that is dipping.
+ */
+.feed-kicker.is-ticket,
+.feed-kicker.is-ride,
+.feed-kicker.is-battle {
+  animation: kicker-pulse 2s ease-in-out infinite;
+  transform-origin: 0 50%;
+}
+
+/*
+ * The heart's beat, softened and flattened to a flash. A card can carry a
+ * recording light dipping to a third of itself; a line of words doing the
+ * same reads as a fault. And a line that shrinks as well as fades is a line
+ * that moves, which a kicker above a caption shouldn't — so this is the fade
+ * alone, half down and back, on a slow beat.
+ */
+@keyframes kicker-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .feed-kicker.is-ticket,
+  .feed-kicker.is-ride,
+  .feed-kicker.is-battle {
+    animation: none;
+  }
+}
+
+/* The kicker sits under the name again, and a little further under it than
+   the card's own 8px gap: the name above is a row of 36px faces, so the
+   kicker wants clearing the picture's foot, not the text's. */
+.feed-kicker {
+  margin-top: 12px;
+  /* A step under the name rather than level with it. Set at the name's own
+     size the uppercase line out-measured it — caps are wider than lowercase at
+     the same point size — so it read as the headline and the person as the
+     byline. Smaller, it sits under the name as a label on it. */
+  font-size: var(--t-md);
+  font-weight: 600;
+  /* Pulled in from the 0.12em the small kickers use. Tracking that wide is
+     what makes a tiny uppercase line legible; at the name's size it only
+     spreads the words out. */
+  letter-spacing: 0.07em;
+}
+
+.feed-user {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+  text-align: left;
+}
+
+.feed-faces {
+  display: flex;
+  align-items: center;
+}
+
+.feed-faces button {
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  margin-left: -8px;
+  border: 2px solid var(--sheet);
+  border-radius: 50%;
+  overflow: hidden;
+  background: var(--wash);
+  cursor: pointer;
+}
+
+.feed-faces button:first-child {
+  margin-left: 0;
+}
+
+.feed-faces img,
+.feed-user img {
+  width: 28px;
+  height: 28px;
+  object-fit: cover;
+  display: block;
+}
+
+.feed-user-copy {
+  display: grid;
+  justify-items: start;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  text-align: left;
+}
+
+.feed-user strong {
+  font-family: var(--font-ui);
+  font-size: var(--t-lg);
+  font-weight: 600;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.feed-user strong .feed-feat {
+  /* Bowl height sits a little under the name letters. Stems paint outside
+     the line. The box is baseline-aligned, so shrinking the bowl would drop
+     its optical centre; the lift puts that centre back where it was. */
+  /* Sized to the names on either side: the glyph runs from the art box's top
+     down to its own baseline, 264 of the 326 grid, so a bowl of 0.518em puts
+     that a little over the cap height of the type it sits between — a light
+     serif needs the extra to carry the same weight. The lift goes to zero,
+     since the glyph has no descender to hang and should simply stand on the
+     text's baseline. */
+  --bowl: 0.64em;
+  --bowl-lift: 0;
+  font-size: 1em;
+  display: inline-block;
+  position: relative;
+  /* The ampersand is a narrow glyph where the pb mark was a wide one — the
+     art box keeps the same 326-tall grid so the vertical alignment is
+     untouched, only the width comes in to match. */
+  width: calc(var(--bowl) * 176 / 190);
+  height: var(--bowl);
+  margin-inline: 0.1415em;
+  vertical-align: var(--bowl-lift);
+}
+
+.feed-user strong .feed-feat::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: calc(var(--bowl) * -74 / 190);
+  width: 100%;
+  height: calc(var(--bowl) * 326 / 190);
+  background: var(--live);
+  -webkit-mask-image: var(--mark);
+  mask-image: var(--mark);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  pointer-events: none;
+}
+
+.feed-meta span,
+.feed-card > p {
+  margin: 0;
+  color: var(--muted);
+  font-size: var(--t-lg);
+}
+
+.feed-card > p {
+  color: var(--ink);
+  font-size: var(--t-xl);
+  line-height: 1.35;
+}
+
+.user-feed {
+  position: absolute;
+  inset: 0;
+  z-index: 12;
+  /* The one panel still on a solid ground of its own — and a warm near-black
+     at that, where everything else in the app is the cold blue. On the shared
+     overlay surface it matches the drawer beside it. */
+  background: var(--sheet-over);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  color: #f6f3ef;
+  display: flex;
+  flex-direction: column;
+}
+
+.user-feed-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 22px 16px 10px;
+}
+
+.user-feed-head .feed-user,
+.user-feed-head .drawer-text {
+  color: #f6f3ef;
+}
+
+/* One post, so no sideways scroll and no snap points — the deck the drawer
+   used to be is gone, and what is left is a single item filling the panel. */
+.user-feed-track {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+}
+
+.user-feed-slide {
+  flex: 1;
+  display: grid;
+  align-content: start;
+  gap: 12px;
+  padding: 0 16px 16px;
+}
+
+.user-feed-slide img {
+  height: min(58dvh, 420px);
+  border-radius: 18px;
+}
+
+.user-feed-copy p {
+  margin: 0;
+  font-size: var(--t-2xl);
+  line-height: 1.4;
+}
+
+.detail-sheet {
+  position: absolute;
+  /* Inset further than the feed cards are, so a popup reads as something
+     laid on top of the screen rather than as another full-width row. */
+  /* Five pixels narrower than it was, split between the two sides so the
+     sheet stays centred in the phone. */
+  left: 27px;
+  right: 27px;
+  bottom: 84px;
+  /* Translucent, but no blur behind it. The sheet is a card that turns over —
+     it carries `transform-style: preserve-3d` and two faces, one of them
+     pre-rotated — and a backdrop-filter forces the element to flatten its
+     3D children. The back face then came up mirrored and upside down. The
+     70% stands on its own; the blur is what cost it. */
+  background: var(--sheet-over);
+  color: var(--ink);
+  border-radius: 22px;
+  padding: 12px 16px 16px;
+  /* No rim — just a very soft white haze around the edge and a quiet dark
+     drop under it, enough to lift the sheet off the screen without drawing
+     a line around it. */
+  box-shadow:
+    0 0 30px rgb(255 255 255 / 7%),
+    0 14px 40px rgb(0 0 0 / 38%);
+  display: grid;
+  /* The two faces share one cell, so the sheet is as tall as the taller of
+     them and the turn doesn't change its size. */
+  grid-template-areas: 'face';
+  /* Turned about its own top edge, with the perspective written into the
+     transform rather than onto the phone — putting it on the phone would
+     have swept every other transformed thing inside it into the same 3D
+     space, the tilting wallet card included. */
+  transform-style: preserve-3d;
+  transition: transform 0.55s cubic-bezier(0.4, 0.05, 0.2, 1);
+}
+
+.detail-sheet.is-paid {
+  transform: perspective(1100px) rotateX(180deg);
+}
+
+.detail-face {
+  grid-area: face;
+  display: grid;
+  gap: 12px;
+  align-content: start;
+  /* Each side is only drawn while it faces the reader. */
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/*
+ * Both faces share one cell, and the sheet used to stand as tall as the
+ * taller of them whichever way it was facing. The back is the taller one —
+ * it carries the code plate — so the front was left with a hand's width of
+ * nothing between the title and the buttons, paying the height of a face
+ * nobody was looking at. Only the face in view sizes the sheet now: the one
+ * behind is lifted out of the flow and stretched over the same room, so it
+ * is still drawn through the turn but no longer sets the height. The sheet
+ * changes size as it turns, which is the right thing — it is turning into a
+ * different card.
+ */
+.detail-face {
+  position: absolute;
+  inset: 12px 16px 16px;
+}
+
+.detail-sheet:not(.is-paid) .detail-face.is-front,
+.detail-sheet.is-paid .detail-face.is-back {
+  position: relative;
+  inset: auto;
+}
+
+.detail-face.is-front {
+  align-content: start;
+}
+
+.detail-face.is-back {
+  align-content: stretch;
+  grid-template-rows: auto auto 1fr auto;
+}
+
+.detail-face.is-back .code-plate {
+  align-self: center;
+}
+
+/* The head now owns a row taller than itself, so it has to say where in that
+   room it sits: the thumb and the lines beside it stay at the top of it, the
+   way they did before the row grew. */
+.detail-face.is-front .detail-head {
+  align-content: start;
+  align-items: start;
+}
+
+.detail-face.is-front .detail-head > * {
+  align-self: start;
+}
+
+/* The back is pre-turned, so the sheet's own 180° brings it upright. */
+.detail-face.is-back {
+  transform: rotateX(180deg);
+}
+
+/*
+ * The wait has far less on it than the side it turned from, and the sheet
+ * keeps the taller face's height — so left packed to the top it sat in a
+ * half-empty card. The crest takes the slack instead: it centres in whatever
+ * room is going and the button drops to the foot, where every other sheet
+ * puts it.
+ */
+/* Sized by what is in it. The stretching row was there to push a caption to
+   the middle of the face; with the caption gone it only held the sheet open
+   at a height nothing was using. */
+.detail-face.is-back.is-wait {
+  align-content: start;
+  grid-template-rows: auto auto auto auto;
+}
+
+.detail-face.is-back.is-wait .deal-wait {
+  align-content: center;
+}
+
+/* The selling end of the same wait. The PM sheet isn't a flipping card, so it
+   takes the rule directly: the crest in the middle of the room the message
+   field left behind, Cancel at the foot. */
+.pm-sheet.is-wait {
+  grid-template-rows: auto auto 1fr auto;
+}
+
+.pm-sheet.is-wait .deal-wait {
+  align-content: center;
+}
+
+.detail-face.is-back .code-title {
+  margin: 0;
+  font-family: var(--font-ui);
+  /* The name of the thing being bought is the heading of this side, not a
+     caption on it — it was set smaller than the line underneath it. */
+  font-size: var(--t-3xl);
+  font-weight: 600;
+  text-align: center;
+}
+
+/* The bars sit straight on the sheet's own ground — no white plate behind
+   them. A paid sheet reads as the same card turned over, and a panel of a
+   different colour would read as a ticket laid on top of it. */
+.code-plate {
+  display: grid;
+  justify-items: center;
+  gap: 8px;
+  padding: 4px 0 2px;
+}
+
+.code-bars {
+  position: relative;
+  width: 100%;
+  max-width: 236px;
+}
+
+.code-plate svg {
+  width: 100%;
+  max-width: 236px;
+  height: 68px;
+  display: block;
+}
+
+/* A read code is a spent code: the bars go down to a ghost of themselves so
+   the eye doesn't keep offering it to the reader. */
+.code-plate.is-used svg,
+.code-plate.is-spent svg {
+  opacity: 0.3;
+  transition: opacity 320ms ease;
+}
+
+/*
+ * The reader's line. One hairline of red that crosses the bars, blinking as
+ * it goes — the two together are what a scan looks like from the outside, and
+ * neither alone reads as one. It sits over the bars rather than in them, so
+ * it crosses whatever code the item happens to carry.
+ */
+.code-laser {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -2%;
+  width: 3px;
+  border-radius: 2px;
+  background: #ff2d2d;
+  box-shadow:
+    0 0 6px 2px rgb(255 45 45 / 85%),
+    0 0 18px 6px rgb(255 45 45 / 45%);
+  animation:
+    laser-sweep 1.5s cubic-bezier(0.45, 0, 0.55, 1) forwards,
+    laser-flash 160ms steps(1, end) infinite;
+}
+
+@keyframes laser-sweep {
+  from {
+    left: -2%;
+  }
+
+  to {
+    left: calc(100% + 2px);
+  }
+}
+
+@keyframes laser-flash {
+  50% {
+    opacity: 0.45;
+  }
+}
+
+.code-plate span {
+  font-family: var(--font-ui);
+  font-size: var(--t-md);
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  color: rgb(255 255 255 / 78%);
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+/* The wait on a person. The crest at the size of the sheet's own thumbnail,
+   and one line saying who is being waited on — nothing to press, because
+   there is nothing the buyer can do but wait. */
+.deal-wait {
+  display: grid;
+  justify-items: center;
+  gap: 16px;
+  padding: 10px 0 6px;
+  text-align: center;
+}
+
+/* The spinner on its own. With the line gone, the sheet has a title, a mark
+   and a button in it and nothing else — so it is sized for those three and
+   not held open at the height it had when there was a caption to fit. */
+.deal-wait.is-bare {
+  gap: 0;
+  padding: 10px 0 12px;
+}
+
+/* Big enough to be the thing on the card rather than a marker beside the line
+   of text — it is the only thing happening while the payment clears. */
+.spinner {
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  color: #fff;
+}
+
+/*
+ * The eye, breathing. Scale and opacity together: scale alone reads as a
+ * zoom, opacity alone as a blink, and the two on one easing read as
+ * something alive waiting. The ring behind it goes the other way, so the
+ * pair never arrive at the same moment and the mark never looks still.
+ */
+.spinner-eye {
+  grid-area: 1 / 1;
+  width: calc(64px * 195 / 240);
+  height: 64px;
+  background-color: currentColor;
+  -webkit-mask-image: var(--icon);
+  mask-image: var(--icon);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  animation: spinner-breathe 1.6s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+
+/* A ring opening out of it and fading, the way a tap spreads — one more
+   thing moving, and nothing in it finer than a hairline circle. */
+.spinner::after {
+  content: '';
+  grid-area: 1 / 1;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  border: 1.5px solid currentColor;
+  animation: spinner-ripple 1.6s cubic-bezier(0.2, 0.6, 0.3, 1) infinite;
+}
+
+@keyframes spinner-breathe {
+  0%,
+  100% {
+    transform: scale(0.84);
+    opacity: 0.55;
+  }
+
+  45% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes spinner-ripple {
+  0% {
+    transform: scale(0.58);
+    opacity: 0.45;
+  }
+
+  70%,
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
+
+/* Waiting still has to look like waiting, so it slows rather than stops. */
+@media (prefers-reduced-motion: reduce) {
+  .spinner-eye,
+  .spinner::after {
+    animation-duration: 4.5s;
+  }
+}
+
+/* A step down. The spinner is what the sheet is saying while it waits; the
+   line under it only names what is being waited on, so at body size it was
+   competing with the thing it captions. */
+.deal-wait span {
+  font-family: var(--font-ui);
+  font-size: var(--t-lg);
+  font-weight: 500;
+  color: rgb(255 255 255 / 86%);
+}
+
+.code-note {
+  font-family: var(--font-ui);
+  font-size: var(--t-md);
+  font-style: normal;
+  color: rgb(255 255 255 / 60%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .detail-sheet {
+    transition: none;
+  }
+
+}
+
+.detail-handle {
+  width: 42px;
+  height: 4px;
+  border-radius: 999px;
+  background: #3a3e4c;
+  margin: 0 auto 4px;
+}
+
+.detail-head {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  gap: 12px;
+  align-items: start;
+}
+
+.detail-head .item-thumb {
+  width: 64px;
+  height: 64px;
+}
+
+.detail-head div {
+  display: grid;
+  gap: 2px;
+}
+
+.detail-head strong {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-display);
+  font-weight: 600;
+}
+
+.detail-head .ticket-mark {
+  color: var(--live);
+}
+
+/* The when-and-where line stays on one row; it reads as a single fact, and
+   broken over two it looks like two. Ellipsis if a venue name runs long. */
+.detail-head span {
+  color: rgb(255 255 255 / 78%);
+  -webkit-text-fill-color: rgb(255 255 255 / 78%);
+  font-size: var(--t-lg);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.detail-head > div {
+  min-width: 0;
+}
+
+/* The third line in the head. Same size as the subtitle above it, full
+   white because it's the number you're deciding on. */
+.detail-head .detail-pay,
+.detail-pay {
+  display: block;
+  margin-top: 2px;
+  color: #fff;
+  -webkit-text-fill-color: #fff;
+  white-space: normal;
+  /* It inherits the one-row treatment from .detail-head span, which clips
+     and ellipsises. This line is allowed to wrap, so it has to undo both —
+     left hidden, a second row would simply be cut off. */
+  overflow: visible;
+  text-overflow: clip;
+  overflow-wrap: anywhere;
+}
+
+/* The pay line and the sell blurb carry real information, so on the lifted
+   popup surface they sit at full white rather than the old warm grey, which
+   was nearly invisible against #222838. */
+.detail-sheet p {
+  margin: 0;
+  color: #fff;
+  -webkit-text-fill-color: #fff;
+  font-size: var(--t-xl);
+  /* Centred over the button it belongs to — it's the caption for the action,
+     not body copy, so it shares the button's axis. */
+  text-align: center;
+}
+
+.pay-btn,
+.ghost-btn {
+  height: 38px;
+  border-radius: 12px;
+  /* Buttons inherit the sheet's 1rem, which at 700 and uppercase outweighs
+     the title above them. A step down puts them back in line with it. */
+  font-size: var(--t-2xl);
+}
+
+.pay-btn {
+  /* The one filled button on the screen — it's the action everything else
+     in the sheet is leading to. It rests in the pewter and goes to white
+     under the pointer; either way the label is ink, never white on white. */
+  background: #a7aebb;
+  color: var(--accent-ink);
+  -webkit-text-fill-color: var(--accent-ink);
+  font-family: var(--font-ui);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+/* The confirming button goes to flat white on hover. :not(:disabled) so a
+   button you can't press doesn't promise that you can. */
+.pay-btn:not(:disabled):hover,
+.pay-btn:not(:disabled):active {
+  background: #fff;
+  color: var(--accent-ink);
+  -webkit-text-fill-color: var(--accent-ink);
+}
+
+.ghost-btn {
+  /* A touch above the sheet's own wash, so the secondary button is still
+     visibly a button without needing an outline. */
+  background: rgb(255 255 255 / 10%);
+  transition: background 0.18s ease, color 0.18s ease;
+}
+
+/* Hovering the secondary button turns it into the primary's resting plate —
+   the two swap places under the pointer rather than both lighting up. */
+.ghost-btn:not(:disabled):hover,
+.ghost-btn:not(:disabled):active {
+  background: var(--btn);
+  color: var(--btn-ink);
+  -webkit-text-fill-color: var(--btn-ink);
+}
+
+.pm-draft {
+  width: 100%;
+  min-height: 72px;
+  resize: none;
+  border: 0;
+  border-radius: 12px;
+  background: var(--wash);
+  color: var(--ink);
+  padding: 10px 12px;
+  font-family: var(--font-ui);
+  font-size: var(--t-lg);
+  outline: none;
+  /* It sits inside a .sell-field label now, which is uppercase and tracked
+     out for the caption above it — the field's own text has to opt back out,
+     the same way the event select does. */
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.pm-draft::placeholder {
+  color: var(--muted);
+}
+
+/*
+ * Answering a request is a column of four or five things, and the sheet it
+ * borrows was built for two. It gets its own rhythm here: a gap between the
+ * rows, a deeper foot, a field taller than three lines and air under the box
+ * so the buttons don't sit on its edge.
+ */
+.pm-sheet {
+  gap: 14px;
+  padding: 14px 16px 20px;
+}
+
+/* A field with its label gone keeps no room for it, and the gap that sat
+   between the two closes with it. */
+/* Picking how many places to take. A clicker: the count sits on the sheet
+   and each tap takes one more place, round to one again at the top. The
+   button underneath reprices as it goes, so the consequence is always in
+   view and there is nothing to confirm. */
+.seat-pick {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  justify-self: start;
+  padding: 6px 11px;
+  border: 0;
+  border-radius: 999px;
+  background: rgb(255 255 255 / 12%);
+  font-family: var(--font-ui);
+  font-size: var(--t-xl);
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+}
+
+/* What the tap is bounded by, said quietly beside the count. */
+.seat-pick em {
+  margin-left: 4px;
+  font-style: normal;
+  font-weight: 500;
+  color: rgb(255 255 255 / 55%);
+}
+
+.pm-sheet .sell-field.is-bare {
+  gap: 0;
+  margin-bottom: 0;
+}
+
+.pm-sheet .sell-field {
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.pm-sheet .pm-draft {
+  min-height: 104px;
+}
+
+/* The figure while it walks down after a deal. Nothing moves but the digits —
+   the glow is only there to say the number is live, and it goes out the
+   moment it lands. */
+/* The figure is a button now — a tap tops the wallet up — but it must not
+   look like one. Everything a button brings with it is stripped off and the
+   number inherits the line it was already set in. */
+.token-top-up {
+  appearance: none;
+  border: 0;
+  margin: 0;
+  padding: 0;
+  background: none;
+  font: inherit;
+  letter-spacing: inherit;
+  font-variant-numeric: inherit;
+  color: inherit;
+  -webkit-text-fill-color: inherit;
+  text-shadow: inherit;
+  cursor: pointer;
+}
+
+/*
+ * Counting used to put a white lift under the figure — first instead of the
+ * shade it always carries, then on top of it. Either way the number sat
+ * differently on the ground while it moved, which is the one thing a balance
+ * should not do: the value changes, the type does not. The movement of the
+ * digits is the whole event. Nothing here now; the rule is left standing as
+ * the hook, should the count ever want marking again.
+ */
+.token-balance.is-counting .token-amount {
+  text-shadow: inherit;
+}
+
+.pay-btn:disabled {
+  opacity: 0.45;
+}
+
+.empty {
+  padding: 24px 0;
+}
+
+@media (max-width: 430px), (display-mode: standalone) {
+  .stage {
+    padding: 0;
+  }
+
+  .phone {
+    width: 100%;
+    height: 100dvh;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .screen-header {
+    padding-top: calc(46px + env(safe-area-inset-top, 0px));
+  }
+
+  .screen-header.has-remix {
+    min-height: 0;
+    padding-top: calc(46px + env(safe-area-inset-top, 0px));
+    padding-bottom: 12px;
+  }
+
+  .screen-feed .screen-header,
+  .screen-events .screen-header,
+  .screen-market .screen-header {
+    min-height: calc(103px + env(safe-area-inset-top, 0px));
+  }
+
+  .bottom-nav {
+    height: 52px;
+    padding: 4px 6px 14px;
+  }
+
+  .sheet {
+    padding-bottom: 68px;
+  }
+}
+
+/* The header mark when it's wired to do something: a bare button, no plate,
+   so it still reads as the logo and not as a control. */
+/* The name doubles as the back-step through the backdrops. Stripped to
+   nothing so the title looks exactly as it does on every other screen — the
+   button is a hit area, not a control. */
+.header-title-btn {
+  display: block;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.header-logo-btn {
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  line-height: 0;
+}
+
+/* The peacock wordmark in the screen headers — sized by height against the
+   title and left on the baseline rather than nudged up the way the old mark
+   was. */
+.peacock-logo {
+  display: block;
+  height: 32px;
+  width: auto;
+  flex-shrink: 0;
+  justify-self: end;
+  object-fit: contain;
+}
+
+/* The horizontal crest lockup, now the mark in every screen header. Its height
+   is the one number the title's alignment is derived from — see --ck-drop on
+   .screen-header h1 — so changing it here moves the title with it. It paints in
+   currentColor and sets its wordmark in the title face, which is why it is
+   inline SVG rather than a file: a webfont never loads inside an <img src>. */
+/*
+ * The mark, drawn rather than set. The art is built on the box the inline
+ * lockup used — 106 by 36, the letters' cap at 15.4 of the 28 the header
+ * gives it, standing on a baseline at 27 — so every number the header was
+ * already aligned to still holds, and the title beside it has not moved.
+ */
+.header-lockup {
+  --lockup-h: 28px;
+  display: block;
+  height: var(--lockup-h);
+  width: auto;
+  flex-shrink: 0;
+  justify-self: end;
+}
+
+/* The pinned rows — the two headline events, the two priciest market drops.
+   A sheer white wash and a hairline edge: enough to lift the pair off the list
+   without turning them into cards of their own. */
+/* The earn badge is a flat #252a33 plate, which reads against the list's own
+   ground but all but vanishes once the pinned row lifts the ground to meet it.
+   On a pinned row it goes up with it, by about the same amount, so the badge
+   keeps the separation it has everywhere else. */
+/* Lifted a step on a pinned row, the way everything else on one is — the
+   row's own wash sits under it. */
+.item-row.is-pinned .earn-badge {
+  background: rgb(58 125 110 / 85%);
+}
+
+.item-row.is-pinned {
+  background: rgb(255 255 255 / 7%);
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 10%);
+  border-radius: 12px;
+  /* The wash is its own edge, so the list rule underneath would only double
+     it — and the pair needs air between them to read as two plates. */
+  border-bottom-color: transparent;
+  margin-bottom: 6px;
+  /* The plate reaches 5px closer to the screen than the plain rows do on each
+     side, and the inner padding takes that 5px back — so the wash is the only
+     thing that moves and the thumbnail and price column stay on the same two
+     lines as every row below. width:auto because the base row is width:100%,
+     which ignores the margins. */
+  margin-inline: -3px;
+  /* The plate reaches 3px past the plain rows on each side and the padding
+     adds that 3px back on top of the row's own side padding — so the thumbnail
+     and the price column land exactly where they do in every row below, and
+     the wash simply sits 6px wider around them. Read off --row-pad rather than
+     hard-coded, so the same plate works on Market's wider rows as on Events'. */
+  padding-inline: calc(var(--row-pad) + 3px);
+  width: auto;
+}
+
+/* Air between the filters above and the first plate. */
+.item-row.is-pinned:first-child {
+  margin-top: 10px;
+}
+
+.item-row.is-pinned:hover {
+  background: rgb(255 255 255 / 11%);
+}
+
+
+/* A three-feather peacock crest standing over every profile circle, drawn in
+   the app's secondary pewter so it reads as part of the chrome rather than as
+   a second white highlight beside the photo. One
+   shared background image, drawn as an SVG so it stays crisp at any size and
+   needs no asset; `--crest-w` is the only thing each avatar has to set. */
+.wallet-profile::after,
+.seller-face::after,
+.avatar-crest::after,
+.feed-faces button::after {
+  content: '';
+  position: absolute;
+  /* Off to the upper left rather than straight up, tipped anticlockwise so
+     the fan leans away from the circle — it reads as worn, not balanced on
+     top. The origin is the foot of the middle feather, which is what sits on
+     the circle's edge. */
+  /* The whole fan lives outside the circle: its box is pushed left of centre
+     and its foot stops level with the circle's upper-left edge, so the
+     feathers only ever grow away from the photo and never across it. */
+  left: 4%;
+  transform: rotate(-32deg);
+  transform-origin: 50% 100%;
+  width: var(--crest-w);
+  /* The art is 36 wide by 26 tall. */
+  height: calc(var(--crest-w) * 26 / 36);
+  background-image: url("data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 36 26%22><g fill=%22%23a7aebb%22><path d=%22M18 26c-.5-4.2-.6-8.2-.2-12.1h1.2c.4 3.9.3 7.9-.2 12.1z%22/><g transform=%22translate(18 8.6)%22><path d=%22M0-6.2C1.7-4 3.4-2.4 3.4.3 3.4 3 1.9 4.8 0 4.8-1.9 4.8-3.4 3-3.4.3-3.4-2.4-1.7-4 0-6.2Z%22/></g><path d=%22M14.4 26c-1.9-3.8-3.3-7.4-4.2-11l1.1-.4c1.5 3.6 2.6 7.3 3.4 11.4z%22/><g transform=%22translate(8.6 10.3) rotate(-24)%22><path d=%22M0-6.2C1.7-4 3.4-2.4 3.4.3 3.4 3 1.9 4.8 0 4.8-1.9 4.8-3.4 3-3.4.3-3.4-2.4-1.7-4 0-6.2Z%22/></g><path d=%22M21.6 26c1.9-3.8 3.3-7.4 4.2-11l-1.1-.4c-1.5 3.6-2.6 7.3-3.4 11.4z%22/><g transform=%22translate(27.4 10.3) rotate(24)%22><path d=%22M0-6.2C1.7-4 3.4-2.4 3.4.3 3.4 3 1.9 4.8 0 4.8-1.9 4.8-3.4 3-3.4.3-3.4-2.4-1.7-4 0-6.2Z%22/></g></g></svg>");
+  background-size: contain;
+  background-repeat: no-repeat;
+  pointer-events: none;
+}
+
+.wallet-profile {
+  --crest-w: 34px;
+}
+
+.wallet-profile::after {
+  /* Clear of the ring the portrait already carries. */
+  top: calc(4% - var(--crest-w) * 26 / 36);
+}
+
+/* The wallet's own portrait is the one crest that goes white. It stands alone
+   over the plume at the top of the screen rather than in a list of faces, so
+   it can carry the full weight the small pewter ones can't. The pale wallet
+   keeps the ink version below — white on ivory would be nothing at all. */
+.wallet-profile::after {
+  background-image: url("data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 36 26%22><g fill=%22%23ffffff%22><path d=%22M18 26c-.5-4.2-.6-8.2-.2-12.1h1.2c.4 3.9.3 7.9-.2 12.1z%22/><g transform=%22translate(18 8.6)%22><path d=%22M0-6.2C1.7-4 3.4-2.4 3.4.3 3.4 3 1.9 4.8 0 4.8-1.9 4.8-3.4 3-3.4.3-3.4-2.4-1.7-4 0-6.2Z%22/></g><path d=%22M14.4 26c-1.9-3.8-3.3-7.4-4.2-11l1.1-.4c1.5 3.6 2.6 7.3 3.4 11.4z%22/><g transform=%22translate(8.6 10.3) rotate(-24)%22><path d=%22M0-6.2C1.7-4 3.4-2.4 3.4.3 3.4 3 1.9 4.8 0 4.8-1.9 4.8-3.4 3-3.4.3-3.4-2.4-1.7-4 0-6.2Z%22/></g><path d=%22M21.6 26c1.9-3.8 3.3-7.4 4.2-11l-1.1-.4c-1.5 3.6-2.6 7.3-3.4 11.4z%22/><g transform=%22translate(27.4 10.3) rotate(24)%22><path d=%22M0-6.2C1.7-4 3.4-2.4 3.4.3 3.4 3 1.9 4.8 0 4.8-1.9 4.8-3.4 3-3.4.3-3.4-2.4-1.7-4 0-6.2Z%22/></g></g></svg>");
+}
+
+
+/*
+ * The bone ground. White furniture on near-white feathers all but disappears,
+ * so on that one the whole header lockup goes ink instead: the name, the
+ * wordmark, the crest over the portrait, the ring around it and both
+ * balances. The shade flips with the ink, a soft white lift rather than a
+ * dark one, because a black shadow under black type only thickens it. The
+ * silver-outlined blue was in here too, but its ground is deep enough that
+ * white reads on it and the outlines are what the eye follows.
+ */
+.wallet-screen[data-skin='chalk'] .wallet-top {
+  --plume-shade: 0 1px 2px rgb(255 255 255 / 55%);
+  --plume-glow: 0 1px 10px rgb(255 255 255 / 45%);
+}
+
+.wallet-screen[data-skin='chalk'] .screen-header h1,
+.wallet-screen[data-skin='chalk'] .screen-header p {
+  color: #0b0d11;
+  -webkit-text-fill-color: #0b0d11;
+  text-shadow: var(--plume-shade), var(--plume-glow);
+}
+
+.wallet-screen[data-skin='chalk'] .wallet-profile {
+  filter:
+    drop-shadow(0 1px 2px rgb(255 255 255 / 55%))
+    drop-shadow(0 1px 10px rgb(255 255 255 / 45%));
+}
+
+/* The mark is artwork now, so going ink on the bone ground is a filter rather
+   than a colour — brightness(0) takes the whole drawing to black and leaves
+   its alpha alone, which is what keeps the shade on the letterforms. The lift
+   under it has to ride in the same chain; a second `filter` would replace
+   this one rather than add to it. */
+.wallet-screen[data-skin='chalk'] .header-lockup {
+  filter:
+    brightness(0)
+    drop-shadow(0 1px 2px rgb(255 255 255 / 55%))
+    drop-shadow(0 1px 10px rgb(255 255 255 / 45%));
+}
+
+.wallet-screen[data-skin='chalk'] .pay-card .token-balance {
+  color: #0b0d11;
+  -webkit-text-fill-color: #0b0d11;
+}
+
+/* The whole balance line solid, the "pck" label included. On the dark grounds
+   the label is held back a step because it is a unit and not a number; on the
+   bone, ink at 82% went grey against near-white and read as disabled rather
+   than as quiet. */
+.wallet-screen[data-skin='chalk'] .pay-card .token-balance small,
+.wallet-screen[data-skin='chalk'] .pay-card .fiat-balance {
+  color: #0b0d11;
+  -webkit-text-fill-color: #0b0d11;
+}
+
+/* The ring and its offset outline, inked to match. */
+.wallet-screen[data-skin='chalk'] .wallet-profile img {
+  box-shadow: 0 0 0 1px rgb(11 13 17 / 88%);
+  outline: 1px solid rgb(11 13 17 / 72%);
+}
+
+.wallet-screen[data-skin='chalk'] .wallet-profile::after {
+  background-image: url("data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 36 26%22><g fill=%22%230b0d11%22><path d=%22M18 26c-.5-4.2-.6-8.2-.2-12.1h1.2c.4 3.9.3 7.9-.2 12.1z%22/><g transform=%22translate(18 8.6)%22><path d=%22M0-6.2C1.7-4 3.4-2.4 3.4.3 3.4 3 1.9 4.8 0 4.8-1.9 4.8-3.4 3-3.4.3-3.4-2.4-1.7-4 0-6.2Z%22/></g><path d=%22M14.4 26c-1.9-3.8-3.3-7.4-4.2-11l1.1-.4c1.5 3.6 2.6 7.3 3.4 11.4z%22/><g transform=%22translate(8.6 10.3) rotate(-24)%22><path d=%22M0-6.2C1.7-4 3.4-2.4 3.4.3 3.4 3 1.9 4.8 0 4.8-1.9 4.8-3.4 3-3.4.3-3.4-2.4-1.7-4 0-6.2Z%22/></g><path d=%22M21.6 26c1.9-3.8 3.3-7.4 4.2-11l-1.1-.4c-1.5 3.6-2.6 7.3-3.4 11.4z%22/><g transform=%22translate(27.4 10.3) rotate(24)%22><path d=%22M0-6.2C1.7-4 3.4-2.4 3.4.3 3.4 3 1.9 4.8 0 4.8-1.9 4.8-3.4 3-3.4.3-3.4-2.4-1.7-4 0-6.2Z%22/></g></g></svg>");
+}
+
+.seller-face {
+  --crest-w: 16px;
+  position: relative;
+}
+
+.seller-face::after {
+  /* The seller face is a photo plus a caption and the photo is centred in a
+     wider column, so neither a percentage of the box nor its left edge finds
+     the circle — both axes are measured off the 40px photo instead. */
+  left: calc(50% - 22px);
+  top: calc(1px - var(--crest-w) * 26 / 36);
+}
+
+.feed-faces button {
+  --crest-w: 12px;
+  position: relative;
+  /* The crest stands above the circle, so the button can no longer clip to
+     itself — the photo inside takes the rounding instead. */
+  overflow: visible;
+}
+
+.feed-faces button::after {
+  top: calc(4% - var(--crest-w) * 26 / 36);
+}
+
+.feed-faces img,
+.feed-user img,
+.feed-composer-face {
+  border-radius: 50%;
+}
+
+
+/* A bare <img> can't carry a pseudo-element, so the composer's face and the
+   drawer header's face get a wrapper whose only job is to hold the crest. */
+.avatar-crest {
+  --crest-w: 15px;
+  position: relative;
+  display: inline-block;
+  line-height: 0;
+  /* Nothing here may clip: the crest grows past the top-left corner. */
+  overflow: visible;
+}
+
+.avatar-crest::after {
+  top: calc(1px - var(--crest-w) * 26 / 36);
+}
+
+/* The rows these sit in clip by default, which would shear the feathers. */
+.feed-composer,
+.feed-user,
+.user-feed-head,
+.feed-faces {
+  overflow: visible;
+}
+
+/* The names sit directly under the picture, and the crest above the first
+   avatar needs the room — so the meta row stands a little further off the
+   photo than the rest of the card's rhythm. */
+.feed-card .feed-meta {
+  margin-top: 9px;
+}
+
+/* The filter drawer is a list of settings, not a toolbar: the plates were
+   stacking up into a grid of grey boxes down the panel. Here a tab is just
+   its label — the chosen one is white, the rest are muted, and the pointer
+   brightens without laying anything down behind the text. */
+.drawer-body .filter-tabs button,
+.drawer-body .filter-tabs button.is-active,
+.drawer-body .filter-tabs button:hover {
+  background: transparent;
+  box-shadow: none;
+}
+
+.drawer-body .filter-tabs button.is-active {
+  color: #fff;
+  -webkit-text-fill-color: #fff;
+}
+
+.drawer-body .filter-tabs button:hover {
+  color: #fff;
+  -webkit-text-fill-color: #fff;
+}
+
+/*
+ * The payment strip. A digital wallet tells you money moved at the top of the
+ * device, over whatever you were looking at, and then stops telling you — so
+ * this is a receipt rather than a dialog: nothing to dismiss, nothing to
+ * answer, gone in three seconds. It sits inside the phone frame because the
+ * device it is imitating is the frame.
+ */
+.pay-notice {
+  position: absolute;
+  /* Clear of the status bar. Installed to the home screen the app runs under
+     the clock, the battery and the camera cutout, and at a flat 10px the
+     strip's own figures were sitting behind them — so it starts below
+     whatever the device says it is keeping for itself, the way the screen
+     headers already do. */
+  top: calc(10px + env(safe-area-inset-top, 0px));
+  left: 10px;
+  right: 10px;
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  /* The app's own raised surface under a blur, the way the sheets are — the
+     strip is a piece of this app on top of this app, not a system chrome
+     borrowed from somewhere else. */
+  /* Its own value rather than the shared one. The strip is the only overlay
+     that lands on the wallet's plume, and that ground is worth seeing more
+     of than a sheet over a list of rows is. */
+  background: rgb(31 44 57 / 80%);
+  /* Light. At 12px the plume behind it was blurred past recognition, so the
+     strip read as a solid slab even at 92% — what tells you a panel is
+     translucent is seeing something you recognise through it. */
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  box-shadow:
+    0 1px 0 0 rgb(255 255 255 / 8%) inset,
+    0 10px 28px rgb(0 0 0 / 38%);
+  color: #fff;
+  pointer-events: none;
+  animation: pay-notice-in 320ms cubic-bezier(0.2, 0.9, 0.3, 1) both;
+}
+
+/* Out the way it came, a little faster — an arrival is worth watching and a
+   departure is not. */
+.pay-notice.is-going {
+  animation: pay-notice-out 420ms cubic-bezier(0.4, 0, 1, 1) forwards;
+}
+
+/*
+ * It comes in on movement alone. It used to fade up as well, and with
+ * `both` holding the last frame the element then sat at `opacity: 1` for the
+ * rest of its life — which is correct, but it meant the strip's own
+ * translucency was being carried by an animation rather than by the rule
+ * that sets it. Nothing touches opacity on the way in now, so the only thing
+ * deciding how much shows through is the background colour.
+ */
+@keyframes pay-notice-in {
+  from {
+    transform: translateY(-120%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes pay-notice-out {
+  to {
+    opacity: 0;
+    transform: translateY(-120%);
+  }
+}
+
+.pay-notice-mark {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: rgb(255 255 255 / 12%);
+}
+
+.pay-notice-mark svg {
+  width: var(--i-md);
+  height: var(--i-md);
+  display: block;
+}
+
+/* Money leaving is stated, money arriving is good news. The only colour on
+   the strip is on the arrow, so the figure itself stays plain white and the
+   two directions are still told apart at a glance. */
+/* Both directions in white. The arrow says which way the money went; a green
+   one said it twice and was the only colour anywhere on the strip. */
+.pay-notice .pay-notice-mark {
+  color: #fff;
+}
+
+.pay-notice-copy {
+  display: grid;
+  gap: 1px;
+  min-width: 0;
+}
+
+.pay-notice-copy strong {
+  font-family: var(--font-ui);
+  font-size: var(--t-lg);
+  font-weight: 700;
+  letter-spacing: 0.015em;
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+.pay-notice-copy em {
+  font-style: normal;
+  font-size: var(--t-sm);
+  color: rgb(255 255 255 / 70%);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

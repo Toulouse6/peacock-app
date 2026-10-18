@@ -1,0 +1,136 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Figtree:wght@400;500;600&family=Inter:wght@400;600;700&family=Outfit:wght@200&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Quicksand:wght@400;500;600;700&family=Sora:wght@200&display=swap');
+
+:root {
+  font-family: Figtree, system-ui, sans-serif;
+  color: #fff;
+  background: #12141c;
+  color-scheme: dark only;
+  supported-color-schemes: dark;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  --font-display: "Plus Jakarta Sans", system-ui, sans-serif;
+
+  /*
+   * The type scale. Eight steps, 11px to 28px, every size in the app on one
+   * of them. There were twenty-six before, a third of them under 11px — 8px
+   * notes, 9px tabs, 10px labels — which is below what either platform will
+   * call legible on a phone (iOS stops at 11pt, Android at 11sp) and reads as
+   * unfinished rather than as quiet. The steps are set in rem so the system
+   * text-size setting still moves them; the px in the comments is what they
+   * come out at untouched.
+   */
+  --t-xs: 0.6875rem;    /* 11px — micro labels, chips, badges. The floor. */
+  --t-sm: 0.75rem;      /* 12px — captions, counts, meta lines */
+  --t-md: 0.8125rem;    /* 13px — secondary copy, subtitles */
+  --t-lg: 0.875rem;     /* 14px — list titles, controls, buttons */
+  --t-xl: 0.9375rem;    /* 15px — body */
+  --t-2xl: 1rem;        /* 16px — card titles, the primary button */
+  --t-3xl: 1.125rem;    /* 18px — section heads */
+  --t-4xl: 1.25rem;     /* 20px — drawer and sheet titles */
+  --t-5xl: 1.5rem;      /* 24px — screen titles */
+  --t-6xl: 1.75rem;     /* 28px — the balance */
+
+  /*
+   * The icon scale. Three steps, the same way the type has ten. Icons were
+   * running at 13, 14, 15, 16, 20 and 26px with no rule behind the choice, so
+   * two marks on the same line of text were often a pixel or two apart — not
+   * enough to look deliberate, enough to look unaligned. Each step is paired
+   * with the type it sits beside, which is how a mark ends up carrying the
+   * same weight as the words around it.
+   */
+  --i-sm: 14px;   /* beside --t-xs/sm/md: inline marks, row glyphs */
+  --i-md: 16px;   /* beside --t-lg/xl: control and toolbar icons */
+  --i-lg: 20px;   /* standalone taps that carry no label */
+  /* Screen titles step away from the app's grotesque into a light classic
+     serif — the headers set the tone, the cards beneath them carry the UI. */
+  --font-title: "Cormorant Garamond", Didot, Georgia, serif;
+  --font-ui: "Plus Jakarta Sans", system-ui, sans-serif;
+  /* The app's secondary. A cool pewter that reads as metal next to the blue
+     chrome, and goes to flat white wherever something is hovered or active —
+     anything that takes the white gets dark text, never white on white. */
+  --accent: #a7aebb;
+  --accent-ink: #11151d;
+  --gold: #a7aebb;
+  --sky: #8ec8ea;
+  --rose: #e2b08a;
+  /* Shared accent: the co-post glyph, the kickers, the earn badges, cast
+     pecks and the active slide dot. The pewter is light enough to carry
+     against the blue-grey sheet and cool enough that a solid mask like the
+     co-post glyph reads as metal rather than as a highlight. */
+  --live: #a7aebb;
+  /* Hover for accent links. index.css resets a:hover to inherit, which would
+     drop them to white anyway — here that drop is the point. */
+  --live-lift: #fff;
+  --ink: #fff;
+  --chrome: #101218;
+  --sheet: #16181f;
+  /* Popups and drawers take the colour the header sits on — the top stop of
+     the phone's gradient — so they read as the chrome coming forward rather
+     than as another card on the feed. */
+  --sheet-raised: #1f2c39;
+  /*
+   * The same surface, let through. Anything laid over the app — a sheet, a
+   * drawer, a confirm — sits here, with a blur behind it, so the screen it
+   * covers is still there underneath rather than replaced. Solid, a popup
+   * reads as a new page; held back, it reads as a layer.
+   *
+   * The number has to be well under what it sounds like. Over the app's own
+   * near-black, 90% is a difference of a few levels of grey and the panel
+   * still reads as opaque — there is nothing bright enough behind it for the
+   * last tenth to show. Three-quarters is where the ground starts coming
+   * through as something you can see rather than measure.
+   */
+  --sheet-over: rgb(31 44 57 / 92%);
+  --muted: #8b90a0;
+  --kicker: #ececec;
+  --btn: #2a2d38;
+  --btn-ink: #d7dbe8;
+  --wash: #1c1f28;
+  --line: #2a2e3a;
+  --nav: #12141a;
+  --header-grad: linear-gradient(135deg, #2db0e0 0%, #3b82f0 48%, #3d74dc 100%);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  min-height: 100%;
+  touch-action: pan-x pan-y;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  min-width: 320px;
+}
+
+button,
+input,
+select {
+  font: inherit;
+  color: inherit;
+  -webkit-text-fill-color: inherit;
+}
+
+a,
+a:visited,
+a:hover,
+a:active,
+a[x-apple-data-detectors],
+a[href^='tel:'],
+a[href^='sms:'] {
+  color: inherit;
+  -webkit-text-fill-color: inherit;
+  text-decoration: none;
+}
