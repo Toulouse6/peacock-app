@@ -877,16 +877,10 @@
   min-width: 44px;
   padding: 3px 5px 4px;
   border-radius: 6px;
-  /* The brand's green, the same one the mark wears on the splash. The plate
-     used to be a near-black a shade off the list it sits in, which made the
-     gain the quietest thing on a row it is meant to be the reward of. The
-     type goes white on it — the pewter it carried was mixed for the dark
-     plate and sinks into this one. */
-  background: rgb(50 110 97 / 85%);
-  color: #fff;
-  -webkit-text-fill-color: #fff;
+  color: #326e61d9;
+  -webkit-text-fill-color: #326e61d9;
   font-family: var(--font-ui);
-  font-size: var(--t-sm);
+  font-size: var(--t-xs);
   font-weight: 600;
   letter-spacing: 0.02em;
 }
@@ -910,8 +904,8 @@
    row rather than hung off a text baseline. */
 .earn-badge .token-mark {
   vertical-align: baseline;
-  height: 1.05em;
-  width: calc(1.05em * 195 / 240);
+  height: .95em;
+  width: calc(.95em * 195 / 240);
 }
 
 .seller-face {
