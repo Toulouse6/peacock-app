@@ -766,6 +766,16 @@
   line-height: 1.2;
 }
 
+/* The price starts level with the top of the title; the gain badge starts
+   level with the top of the line under it (the first row is exactly one title
+   line tall, and the gap matches .item-copy's). */
+.screen-events .item-price {
+  align-self: start;
+  align-content: start;
+  grid-template-rows: calc(var(--t-2xl) * 1.2) auto;
+  gap: 3px;
+}
+
 .screen-events .item-sub,
 .screen-events .item-meta {
   font-size: var(--t-sm);
