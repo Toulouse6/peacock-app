@@ -888,7 +888,8 @@
      one. A gap here would have been added to both. */
   gap: 0;
   min-width: 44px;
-  padding: 3px 5px 4px;
+  margin-top: 7px;
+  padding: 0;
   border-radius: 6px;
   color: #326e61d9;
   -webkit-text-fill-color: #326e61d9;
