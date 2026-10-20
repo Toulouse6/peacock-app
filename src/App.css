@@ -3597,34 +3597,6 @@
   background: transparent;
 }
 
-.feed-actions.is-request .feed-user {
-  /* A name sits off the button by the gap a name wants, not the 10px the
-     controls keep between each other. */
-  margin-right: 2px;
-  /* The foot row's face is 19px against 0.68rem type, so it takes less air
-     between the two than the full-size pairing at the top of a card does —
-     eight pixels there is a tenth of the face, here it is nearly half of it.
-     Two is as close as the crest over the avatar allows without painting on
-     the first letter. */
-  gap: 2px;
-}
-
-/* At the foot of a request the name is a label beside a control rather than
-   the card's byline, so it is set at the PM button's own size — and the face
-   comes down with it, since a 28px head beside 0.68rem type reads as a photo
-   with a caption. */
-/* The size is set on the row and on the name both: the name's own rule is
-   (0,1,1) and this is (0,3,1), but the figure beside it inherits, so the row
-   has to carry the size too for the two to measure the same. */
-.feed-actions.is-request .feed-user,
-.feed-actions.is-request .feed-user strong {
-  font-size: var(--t-sm);
-  font-weight: 600;
-  /* The name's own leading was taller than the type and sat it low against
-     the button's label; stripped to the glyphs, the two words line up. */
-  line-height: 1;
-}
-
 /* The copy is a grid, so it centres on the face rather than starting at the
    top of a box taller than itself. */
 .feed-actions.is-request .feed-user-copy {
@@ -3646,12 +3618,8 @@
 .feed-actions.is-request .feed-left {
   display: inline-flex;
   align-items: center;
-  align-self: center;
+  align-self: flex-end;
   margin-left: 2px;
-  /* A pixel down. Centring puts the figures' box on the row's middle, which
-     sits them a touch above the name's optical line. */
-  position: relative;
-  top: 1px;
   color: var(--muted);
   font-size: var(--t-sm);
   font-weight: 600;
@@ -3671,11 +3639,6 @@
   top: -1px;
 }
 
-.feed-actions.is-request .feed-user img {
-  width: 19px;
-  height: 19px;
-}
-
 /* A battle's foot holds only the person who opened it — there is no button
    beside them, so the row is just the name standing under the options. */
 .feed-actions.is-request.is-battle {
@@ -3686,6 +3649,9 @@
   /* The person now rides in this row, so it needs the air a name wants
      rather than the air a button wants. */
   margin-top: 8px;
+  /* The face and name are full size, so the countdown and PM button sit on
+     the row's foot rather than floating in its middle. */
+  align-items: flex-end;
   gap: 10px;
 }
 
