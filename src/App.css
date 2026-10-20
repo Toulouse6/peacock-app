@@ -4150,6 +4150,7 @@
 .feed-faces {
   display: flex;
   align-items: center;
+  margin-bottom: -6px;
 }
 
 .feed-faces button {
