@@ -776,6 +776,11 @@
   gap: 3px;
 }
 
+/* Cancel the plate's top padding so the icon, not the padding, meets the line. */
+.screen-events .earn-badge {
+  margin-top: -3px;
+}
+
 .screen-events .item-sub,
 .screen-events .item-meta {
   font-size: var(--t-sm);
