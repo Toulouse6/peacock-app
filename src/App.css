@@ -766,19 +766,17 @@
   line-height: 1.2;
 }
 
-/* The price starts level with the top of the title; the gain badge starts
-   level with the top of the line under it (the first row is exactly one title
-   line tall, and the gap matches .item-copy's). */
+/* The price's digits start level with the top of the title's letters (the
+   padding makes up for the title's taller line box), and the gain badge sits
+   right under it. */
 .screen-events .item-price {
   align-self: start;
   align-content: start;
-  grid-template-rows: calc(var(--t-2xl) * 1.2) auto;
-  gap: 3px;
+  gap: 0;
 }
 
-/* Cancel the plate's top padding so the icon, not the padding, meets the line. */
-.screen-events .earn-badge {
-  margin-top: -3px;
+.screen-events .cost-mark {
+  padding-top: 5px;
 }
 
 .screen-events .item-sub,
