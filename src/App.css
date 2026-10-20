@@ -3618,7 +3618,6 @@
 .feed-actions.is-request .feed-left {
   display: inline-flex;
   align-items: center;
-  align-self: flex-end;
   margin-left: 2px;
   color: var(--muted);
   font-size: var(--t-sm);
@@ -3653,6 +3652,16 @@
      the row's foot rather than floating in its middle. */
   align-items: flex-end;
   gap: 10px;
+}
+
+/* The name and the PM label drop onto the countdown's line, so all three
+   read as one row of text sitting on the foot of the face. */
+.feed-actions.is-request .feed-user-copy {
+  transform: translateY(5px);
+}
+
+.feed-actions.is-request > button {
+  transform: translateY(4px);
 }
 
 /* The chair that stands for "seats" on an offer line. Set to the line's own
