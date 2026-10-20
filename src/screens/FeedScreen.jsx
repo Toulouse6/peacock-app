@@ -9,6 +9,7 @@ import { ALT_EVENT_TYPES } from '../lib/filters.js'
 import { assetUrl, shortName } from '../lib/format.js'
 import { useDismissOnOutside } from '../lib/dismiss.js'
 import { Spinner } from '../components/Spinner.jsx'
+import { TokenMark } from '../components/TokenMark.jsx'
 import { earnOver } from '../lib/balance.js'
 
 const ME = {
@@ -785,7 +786,8 @@ function PmSheet({ post, onClose, onPaid }) {
                 ) : null}
                 {/* Fixed, and said so: the fare is the app's number rather
                     than something the two of them settle in the notes. */}
-                {fee} pck fixed
+                <TokenMark />
+                {fee} fixed
               </span>
             </>
           ) : (
@@ -802,7 +804,7 @@ function PmSheet({ post, onClose, onPaid }) {
           <span>
             {deal === 'pending'
               ? `Waiting on ${name} to accept`
-              : `${name} accepted · ${total} pck paid to you`}
+              : <>{name} accepted · <TokenMark />{total} paid to you</>}
           </span>
         </div>
       ) : sent ? (
@@ -856,9 +858,8 @@ function PmSheet({ post, onClose, onPaid }) {
           className="pay-btn"
           onClick={() => setDeal('pending')}
         >
-          {isRide
-            ? `Take the ride · ${total} pck`
-            : `Offer ticket · ${total} pck`}
+          {isRide ? 'Take the ride' : 'Offer ticket'} · <TokenMark />
+          {total}
         </button>
       ) : (
         <button

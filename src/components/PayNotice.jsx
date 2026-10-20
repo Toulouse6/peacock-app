@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { onMovement } from '../lib/balance.js'
+import { TokenMark } from './TokenMark.jsx'
 
 /*
  * The strip a digital wallet drops at the top of the phone when money moves.
@@ -85,7 +86,8 @@ export function PayNotice() {
       <span className="pay-notice-copy">
         <strong>
           {out ? '−' : '+'}
-          {note.amount.toLocaleString()} pck
+          <TokenMark />
+          {note.amount.toLocaleString()}
         </strong>
         <em>{note.label || (out ? 'Paid from your wallet' : 'Received in your wallet')}</em>
       </span>
