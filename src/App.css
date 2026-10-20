@@ -5351,6 +5351,11 @@
   font-variant-numeric: lining-nums tabular-nums;
 }
 
+.pay-notice-sign {
+  font-size: 0.8em;
+  vertical-align: 0.06em;
+}
+
 .pay-notice-copy em {
   font-style: normal;
   font-size: var(--t-sm);

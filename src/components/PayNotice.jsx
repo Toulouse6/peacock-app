@@ -85,7 +85,7 @@ export function PayNotice() {
       </span>
       <span className="pay-notice-copy">
         <strong>
-          {out ? '−' : '+'}
+          <span className="pay-notice-sign">{out ? '−' : '+'}</span>
           <TokenMark />
           {note.amount.toLocaleString()}
         </strong>
